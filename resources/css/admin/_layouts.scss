@@ -1,0 +1,41 @@
+// ============================================
+// ADMIN LAYOUTS (Sidebar, TopNav, Minimal)
+// ============================================
+
+// Sidebar Layout
+.admin-layout-sidebar {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    min-height: 100vh;
+    background: var(--bs-body-bg);
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// TopNav Layout
+.admin-layout-topnav {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+// Minimal Layout
+.admin-layout-minimal {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--bs-body-bg);
+}
+
+// Board Layout (Advanced)
+.admin-board {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle at top, rgba(14, 165, 233, 0.25), transparent 55%),
+        radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.12), transparent 45%),
+        #0f172a;
+    color: #0f172a;
+}

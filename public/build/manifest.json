@@ -1,0 +1,50 @@
+{
+  "resources/css/admin.scss": {
+    "file": "assets/admin.css",
+    "src": "resources/css/admin.scss",
+    "isEntry": true,
+    "name": "admin",
+    "names": [
+      "admin.css"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/auth.scss": {
+    "file": "assets/auth.css",
+    "src": "resources/css/auth.scss",
+    "isEntry": true,
+    "name": "auth",
+    "names": [
+      "auth.css"
+    ]
+  },
+  "resources/js/admin.js": {
+    "file": "assets/admin2.js",
+    "name": "admin",
+    "src": "resources/js/admin.js",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app.css"
+    ]
+  },
+  "resources/js/auth.js": {
+    "file": "assets/auth2.js",
+    "name": "auth",
+    "src": "resources/js/auth.js",
+    "isEntry": true
+  }
+}

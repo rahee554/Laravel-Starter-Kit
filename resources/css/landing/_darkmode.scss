@@ -1,0 +1,49 @@
+// ============================================
+// DARK MODE SETUP - Bootstrap data-bs-theme
+// ============================================
+// Add dark mode CSS custom properties for landing
+
+// CSS Custom Properties - Light Mode
+:root,
+[data-bs-theme="light"] {
+    // Landing Colors
+    --landing-primary: #00aaff;
+    --landing-bg: #ffffff;
+    --landing-text: #1e293b;
+    --landing-border: #e2e8f0;
+    --landing-card-bg: #ffffff;
+    --landing-section-bg: #f8fafc;
+    --landing-shadow: rgba(0, 0, 0, 0.1);
+    --landing-overlay: rgba(0, 0, 0, 0.5);
+    
+    // Transitions
+    --transition-base: all 0.25s ease;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Dark Mode
+[data-bs-theme="dark"] {
+    // Override Bootstrap dark mode colors
+    --bs-body-bg: #0f172a;
+    --bs-body-color: #e2e8f0;
+    --bs-border-color: #334155;
+    
+    // Landing Dark Colors
+    --landing-bg: #0f172a;
+    --landing-text: #e2e8f0;
+    --landing-border: #334155;
+    --landing-card-bg: #1e293b;
+    --landing-section-bg: #1e293b;
+    --landing-shadow: rgba(0, 0, 0, 0.4);
+    --landing-overlay: rgba(0, 0, 0, 0.7);
+    
+    // Keep primary colors consistent
+    --landing-primary: #00aaff;
+}
+
+// Global body styling for dark mode
+body.landing-page {
+    background: var(--landing-bg);
+    color: var(--landing-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

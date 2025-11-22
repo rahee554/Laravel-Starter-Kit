@@ -1,0 +1,293 @@
+// ============================================
+// LANDING PAGE UTILITIES & ANIMATIONS
+// Extending Bootstrap Utilities
+// ============================================
+
+// Text Utilities - Extending Bootstrap
+.text-gradient {
+    background: linear-gradient(135deg, $primary, lighten($primary, 15%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+// Background Utilities - Extending Bootstrap
+.bg-gradient-primary {
+    background: linear-gradient(135deg, $primary 0%, darken($primary, 10%) 100%) !important;
+}
+
+.bg-gradient-light {
+    background: linear-gradient(135deg, rgba($primary, 0.05) 0%, rgba($primary, 0.02) 100%) !important;
+}
+
+// Button Enhancements - Extending Bootstrap .btn
+.btn-primary {
+    background: linear-gradient(135deg, $primary, lighten($primary, 10%));
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba($primary, 0.3);
+
+    &:hover {
+        background: linear-gradient(135deg, darken($primary, 5%), $primary);
+        box-shadow: 0 6px 20px rgba($primary, 0.4);
+        transform: translateY(-2px);
+        border: none;
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.btn-outline-primary {
+    border-color: $primary;
+    color: $primary;
+    background: transparent;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: $primary;
+        border-color: $primary;
+        color: white;
+        box-shadow: 0 4px 12px rgba($primary, 0.3);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.btn-lg {
+    padding: 0.875rem 2rem;
+    font-size: 1.125rem;
+    border-radius: $border-radius-pill;
+}
+
+// Animations
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+// Animation Classes
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slideInLeft {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slideInRight {
+    animation: slideInRight 0.6s ease-out;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.6s ease-out;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+// Delay Classes for Staggered Animations
+.animate-delay-100 {
+    animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+    animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+    animation-delay: 0.4s;
+}
+
+.animate-delay-500 {
+    animation-delay: 0.5s;
+}
+
+// Image Utilities
+.img-rounded {
+    border-radius: $border-radius-xl;
+}
+
+.img-shadow {
+    box-shadow: $box-shadow-xl;
+}
+
+// Badge Enhancements
+.badge-primary {
+    background: linear-gradient(135deg, $primary, lighten($primary, 10%));
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: $border-radius-pill;
+}
+
+// Icon Box
+.icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba($primary, 0.1);
+    border-radius: $border-radius-lg;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.875rem;
+    color: $primary;
+    transition: $transition-base;
+
+    &:hover {
+        background: $primary;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    &.icon-box-lg {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+
+    &.icon-box-sm {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+}
+
+// Divider
+.divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, $primary, lighten($primary, 10%));
+    border-radius: $border-radius;
+    margin: 1.5rem auto;
+
+    &.divider-left {
+        margin-left: 0;
+    }
+}
+
+// Overlay
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($dark, 0.5);
+    z-index: 0;
+}
+
+.overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba($primary, 0.8) 0%, rgba($primary, 0.4) 100%);
+    z-index: 0;
+}
+
+// Section Backgrounds
+.bg-light {
+    background: #f8f9fa !important;
+}
+
+.bg-dark {
+    background: $dark !important;
+    color: white;
+}
+
+// Responsive Utilities
+@media (max-width: 768px) {
+    .text-md-start {
+        text-align: center !important;
+    }
+
+    .text-md-end {
+        text-align: center !important;
+    }
+}

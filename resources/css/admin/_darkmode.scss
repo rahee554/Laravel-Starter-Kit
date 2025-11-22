@@ -1,0 +1,51 @@
+// ============================================
+// DARK MODE SETUP - Bootstrap data-bs-theme
+// ============================================
+// Add dark mode CSS custom properties for admin
+
+// CSS Custom Properties - Light Mode
+:root,
+[data-bs-theme="light"] {
+    // Admin Colors
+    --admin-primary: #00aaff;
+    --admin-bg: #f8fafc;
+    --admin-text: #1e293b;
+    --admin-border: #e2e8f0;
+    --admin-card-bg: #ffffff;
+    --admin-sidebar-bg: #ffffff;
+    --admin-header-bg: #ffffff;
+    --admin-shadow: rgba(0, 0, 0, 0.1);
+    --admin-hover-bg: #f1f5f9;
+    
+    // Transitions
+    --transition-base: all 0.2s ease;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Dark Mode
+[data-bs-theme="dark"] {
+    // Override Bootstrap dark mode colors
+    --bs-body-bg: #0f172a;
+    --bs-body-color: #e2e8f0;
+    --bs-border-color: #334155;
+    
+    // Admin Dark Colors
+    --admin-bg: #0f172a;
+    --admin-text: #e2e8f0;
+    --admin-border: #334155;
+    --admin-card-bg: #1e293b;
+    --admin-sidebar-bg: #1e293b;
+    --admin-header-bg: #1e293b;
+    --admin-shadow: rgba(0, 0, 0, 0.4);
+    --admin-hover-bg: #334155;
+    
+    // Keep primary colors consistent
+    --admin-primary: #00aaff;
+}
+
+// Global body styling for dark mode
+body {
+    background: var(--admin-bg);
+    color: var(--admin-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

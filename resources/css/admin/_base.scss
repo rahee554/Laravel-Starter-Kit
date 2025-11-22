@@ -1,0 +1,54 @@
+// ============================================
+// ADMIN CUSTOM PROPERTIES (CSS Variables)
+// ============================================
+// Modern CSS custom properties for runtime customization
+
+:root {
+    --color-primary: #{$primary};
+    --color-secondary: #{$secondary};
+    --color-success: #{$success};
+    --color-danger: #{$danger};
+    --color-warning: #{$warning};
+    --color-info: #{$info};
+    --color-light: #{$light};
+    --color-dark: #{$dark};
+
+    --sidebar-width: #{$sidebar-width};
+    --sidebar-width-collapsed: #{$sidebar-width-collapsed};
+    --header-height: #{$header-height};
+    
+    --transition-base: all 0.2s ease;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body.admin-surface {
+    font-family: $font-family-base;
+    background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 40%, #ffffff 100%);
+    color: var(--color-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}

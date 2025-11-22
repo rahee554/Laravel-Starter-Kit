@@ -1,0 +1,69 @@
+// ============================================
+// LANDING PAGE MAIN STYLESHEET
+// Bootstrap-First Architecture
+// ============================================
+
+// 1. Custom Bootstrap Variable Overrides (MUST come first)
+@import 'landing/variables';
+
+// 2. Import Bootstrap (after custom variables)
+@import 'bootstrap/scss/bootstrap';
+
+// 3. Custom Components (after Bootstrap)
+@import 'landing/darkmode';
+@import 'landing/components';
+@import 'landing/sections';
+@import 'landing/utilities';
+
+// ============================================
+// GLOBAL LANDING PAGE STYLES
+// ============================================
+
+// Smooth Scrolling
+html {
+    scroll-behavior: smooth;
+}
+
+// Base Typography
+body.landing-page {
+    font-family: $font-family-base;
+    color: $body-color;
+    line-height: $line-height-base;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Selection
+::selection {
+    background: rgba($primary, 0.2);
+    color: $dark;
+}
+
+::-moz-selection {
+    background: rgba($primary, 0.2);
+    color: $dark;
+}
+
+// Focus Styles
+:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+}
+
+// Link Styles
+a {
+    color: $primary;
+    text-decoration: none;
+    transition: $transition-base;
+
+    &:hover {
+        color: darken($primary, 10%);
+    }
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: $dark;
+}

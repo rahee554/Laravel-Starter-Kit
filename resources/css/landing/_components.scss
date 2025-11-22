@@ -1,0 +1,313 @@
+// ============================================
+// LANDING PAGE COMPONENTS
+// ============================================
+
+// Hero Section
+.hero {
+    padding: 6rem 0 4rem;
+    background: linear-gradient(135deg, rgba($primary, 0.05) 0%, rgba($primary, 0.02) 100%);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba($primary, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+        padding: 4rem 0 3rem;
+    }
+}
+
+// Feature Cards
+.feature-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: $border-radius-lg;
+    transition: $transition-base;
+    border: 1px solid $gray-200;
+    background: white;
+    height: 100%;
+
+    &:hover {
+        border-color: $primary;
+        box-shadow: 0 0 0 1px rgba($primary, 0.1), $box-shadow-lg;
+        transform: translateY(-4px);
+    }
+
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba($primary, 0.1);
+        border-radius: $border-radius-lg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.875rem;
+        margin: 0 auto 1.5rem;
+        color: $primary;
+        transition: $transition-base;
+    }
+
+    &:hover .feature-icon {
+        background: $primary;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: $dark;
+    }
+
+    p {
+        color: $gray-600;
+        margin: 0;
+        line-height: 1.6;
+    }
+}
+
+// Pricing Cards
+.pricing-card {
+    background: white;
+    border: 1px solid $gray-200;
+    border-radius: $border-radius-xl;
+    padding: 2rem;
+    transition: $transition-base;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &.featured {
+        border-color: $primary;
+        box-shadow: $box-shadow-lg;
+        transform: scale(1.05);
+
+        .pricing-badge {
+            display: inline-block;
+            background: $primary;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: $border-radius;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            transform: scale(1);
+        }
+    }
+
+    &:hover {
+        border-color: $primary;
+        box-shadow: $box-shadow-lg;
+        transform: translateY(-4px);
+
+        &.featured {
+            transform: scale(1.08) translateY(-4px);
+
+            @media (max-width: 768px) {
+                transform: translateY(-4px);
+            }
+        }
+    }
+
+    .pricing-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: $dark;
+    }
+
+    .pricing-price {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: $primary;
+        margin-bottom: 0.5rem;
+
+        .currency {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+
+        .period {
+            font-size: 1rem;
+            color: $gray-600;
+            font-weight: 400;
+        }
+    }
+
+    .pricing-description {
+        color: $gray-600;
+        margin-bottom: 2rem;
+    }
+
+    .pricing-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 2rem;
+        flex: 1;
+
+        li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid $gray-200;
+            color: $gray-700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+
+            &::before {
+                content: '✓';
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                background: rgba($success, 0.2);
+                color: $success;
+                border-radius: 50%;
+                font-weight: 700;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}
+
+// Testimonial Cards
+.testimonial-card {
+    background: white;
+    border: 1px solid $gray-200;
+    border-radius: $border-radius-xl;
+    padding: 2rem;
+    transition: $transition-base;
+    height: 100%;
+
+    &:hover {
+        box-shadow: $box-shadow-lg;
+        border-color: $primary;
+        transform: translateY(-2px);
+    }
+
+    .testimonial-stars {
+        color: $warning;
+        margin-bottom: 1rem;
+        font-size: 1.125rem;
+        letter-spacing: 2px;
+    }
+
+    .testimonial-text {
+        color: $gray-700;
+        margin-bottom: 1.5rem;
+        font-style: italic;
+        line-height: 1.8;
+    }
+
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, $primary, lighten($primary, 10%));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+        }
+
+        .author-info {
+            h4 {
+                margin: 0;
+                color: $dark;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            p {
+                margin: 0;
+                color: $gray-600;
+                font-size: 0.875rem;
+            }
+        }
+    }
+}
+
+// CTA Section
+.cta-section {
+    background: linear-gradient(135deg, $primary 0%, darken($primary, 10%) 100%);
+    color: white;
+    padding: 5rem 0;
+    text-align: center;
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.125rem;
+        opacity: 0.95;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+        padding: 3rem 0;
+
+        h2 {
+            font-size: 1.75rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+    }
+}
+
+// Stats Section
+.stats-card {
+    text-align: center;
+    padding: 2rem;
+
+    .stats-number {
+        font-size: 3rem;
+        font-weight: 800;
+        color: $primary;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+    }
+
+    .stats-label {
+        color: $gray-600;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.875rem;
+    }
+}

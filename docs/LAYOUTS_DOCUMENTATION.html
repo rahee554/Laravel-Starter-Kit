@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artflow Studio StarterKit - Complete Layout Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00aaff;
+            --dark: #1a202c;
+            --light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #0088cc 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .layout-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .layout-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 170, 255, 0.15);
+        }
+        
+        .layout-preview {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #94a3b8;
+        }
+        
+        .badge-custom {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+        
+        [data-bs-theme="dark"] {
+            --bs-body-bg: #0f172a;
+            --bs-body-color: #e2e8f0;
+        }
+        
+        [data-bs-theme="dark"] .layout-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        
+        [data-bs-theme="dark"] .layout-preview {
+            background: #0f172a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button 
+        onclick="toggleTheme()" 
+        style="position: fixed; top: 20px; right: 20px; z-index: 1000; padding: 0.75rem 1rem; border: none; border-radius: 8px; background: #00aaff; color: white; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        🌓 Toggle Theme
+    </button>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Artflow Studio StarterKit</h1>
+            <p class="lead mb-4">Complete Layout Documentation & Usage Guide</p>
+            <p class="mb-0">13 Authentication Layouts • 5 Admin Layouts • Bootstrap 5 • Dark Mode • Fortify Integration</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <h5 class="mb-3">Quick Navigation</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#installation">Installation</a>
+                        <a class="nav-link" href="#auth-layouts">Auth Layouts (13)</a>
+                        <a class="nav-link" href="#admin-layouts">Admin Layouts (5)</a>
+                        <a class="nav-link" href="#dark-mode">Dark Mode</a>
+                        <a class="nav-link" href="#customization">Customization</a>
+                        <a class="nav-link" href="#bootstrap">Bootstrap System</a>
+                        <a class="nav-link" href="#package-usage">Package Usage</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Documentation -->
+            <div class="col-lg-9">
+                
+                <!-- Installation Section -->
+                <section id="installation" class="mb-5">
+                    <h2 class="mb-4">Installation</h2>
+                    
+                    <h4>Method 1: Via Composer (Recommended)</h4>
+                    <div class="code-block">
+<pre>composer require artflow-studio/starterkit
+
+php artisan starterkit:install
+
+npm install && npm run build
+
+php artisan migrate</pre>
+                    </div>
+
+                    <h4 class="mt-4">Method 2: Manual Installation</h4>
+                    <div class="code-block">
+<pre>1. Copy all files from package/ directory
+2. Update composer.json autoload section
+3. Run: composer dump-autoload
+4. Run: npm install && npm run build</pre>
+                    </div>
+
+                    <div class="alert alert-info mt-3">
+                        <strong>📦 What's Included:</strong>
+                        <ul class="mb-0 mt-2">
+                            <li>13 Pre-built authentication layouts</li>
+                            <li>5 Admin dashboard layouts</li>
+                            <li>Bootstrap 5.3.8 integration</li>
+                            <li>Dark mode support (CSS custom properties)</li>
+                            <li>Laravel Fortify authentication</li>
+                            <li>Responsive design (mobile-first)</li>
+                            <li>Form validation & processing states</li>
+                            <li>Particles.js integration</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Authentication Layouts -->
+                <section id="auth-layouts" class="mb-5">
+                    <h2 class="mb-4">Authentication Layouts (13)</h2>
+                    <p class="lead">Beautiful, responsive authentication pages with form validation and dark mode support.</p>
+
+                    <!-- Particles Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">1. Particles Layout</h3>
+                                <span class="badge badge-custom bg-primary">Recommended</span>
+                                <span class="badge badge-custom bg-success">Animated</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.particles</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            🎨
+                        </div>
+
+                        <p class="mb-3">Stunning animated particle background with floating dots and connecting lines. Perfect for modern tech startups.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>50 animated CSS particles</li>
+                            <li>Dynamic SVG connecting lines</li>
+                            <li>Smooth animations</li>
+                            <li>Dark mode compatible</li>
+                            <li>No external JavaScript libraries needed</li>
+                        </ul>
+
+                        <h5>Usage:</h5>
+                        <div class="code-block">
+<pre>@extends('layouts.starterkit.auth.particles')
+
+@section('title', 'Sign In')
+@section('description', 'Welcome back')
+
+@section('content')
+    &lt;!-- Your form here --&gt;
+@endsection</pre>
+                        </div>
+
+                        <a href="http://127.0.0.1:8000/test/auth/particles" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Centered Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">2. Centered Layout</h3>
+                                <span class="badge badge-custom bg-secondary">Classic</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.centered</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            📦
+                        </div>
+
+                        <p class="mb-3">Classic centered authentication box. Simple, elegant, and timeless design.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Centered card container</li>
+                            <li>Gradient background</li>
+                            <li>Responsive on all devices</li>
+                            <li>Bootstrap form components</li>
+                        </ul>
+
+                        <div class="code-block">
+<pre>@extends('layouts.starterkit.auth.centered')
+
+@section('title', 'Sign In')
+@section('content')
+    &lt;!-- Form --&gt;
+@endsection</pre>
+                        </div>
+
+                        <a href="http://127.0.0.1:8000/test/auth/centered" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Split Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">3. Split Screen Layout</h3>
+                                <span class="badge badge-custom bg-info">Professional</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.split</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            ↔️
+                        </div>
+
+                        <p class="mb-3">Split screen design with branding on left, form on right. Perfect for corporate applications.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>50/50 split on desktop</li>
+                            <li>Stacked on mobile</li>
+                            <li>Brand showcase area</li>
+                            <li>Custom messaging section</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/split" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Glass Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">4. Glass Morphism Layout</h3>
+                                <span class="badge badge-custom bg-success">Modern</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.glass</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            🪟
+                        </div>
+
+                        <p class="mb-3">Trendy glassmorphism effect with frosted glass appearance and backdrop blur.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Frosted glass effect</li>
+                            <li>Backdrop blur filter</li>
+                            <li>Semi-transparent background</li>
+                            <li>iOS-style design</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/glass" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Hero Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">5. Hero Layout</h3>
+                                <span class="badge badge-custom bg-warning">Marketing</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.hero</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            🏆
+                        </div>
+
+                        <p class="mb-3">Large hero section with prominent call-to-action. Great for landing page style auth.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Large hero banner</li>
+                            <li>Marketing-focused</li>
+                            <li>Feature highlights</li>
+                            <li>Conversion optimized</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/hero" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Minimal Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">6. Minimal Layout</h3>
+                                <span class="badge badge-custom bg-secondary">Clean</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.minimal</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            ✨
+                        </div>
+
+                        <p class="mb-3">Ultra-minimal design with focus on content. No distractions, just functionality.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Minimal styling</li>
+                            <li>Focus on form</li>
+                            <li>Fast loading</li>
+                            <li>Maximum accessibility</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/minimal" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Modern Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">7. Modern Layout</h3>
+                                <span class="badge badge-custom bg-success">Contemporary</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.modern</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            🎯
+                        </div>
+
+                        <p class="mb-3">Contemporary design with modern UI patterns and subtle animations.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Modern aesthetics</li>
+                            <li>Subtle animations</li>
+                            <li>Clean typography</li>
+                            <li>Contemporary colors</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/modern" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- 3D Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">8. 3D Layout</h3>
+                                <span class="badge badge-custom bg-danger">Experimental</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.3d</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            🎲
+                        </div>
+
+                        <p class="mb-3">Three-dimensional effects with perspective transforms and depth.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>3D transforms</li>
+                            <li>Perspective effects</li>
+                            <li>Depth perception</li>
+                            <li>Interactive elements</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/3d" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Premium Dark Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">9. Premium Dark Layout</h3>
+                                <span class="badge badge-custom bg-dark">Premium</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.premium-dark</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            🌙
+                        </div>
+
+                        <p class="mb-3">Luxurious dark theme with premium feel. Perfect for high-end applications.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Always dark theme</li>
+                            <li>Premium aesthetics</li>
+                            <li>Elegant gradients</li>
+                            <li>Sophisticated design</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/premium-dark" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Gradient Flow Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">10. Gradient Flow Layout</h3>
+                                <span class="badge badge-custom bg-success">Animated</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.gradient-flow</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            🌈
+                        </div>
+
+                        <p class="mb-3">Animated gradient background that flows and changes colors continuously.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Animated gradients</li>
+                            <li>Flowing colors</li>
+                            <li>Dynamic background</li>
+                            <li>Eye-catching design</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/gradient-flow" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Clean Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">11. Clean Layout</h3>
+                                <span class="badge badge-custom bg-secondary">Simple</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.clean</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            🧼
+                        </div>
+
+                        <p class="mb-3">Absolutely clean and simple design. Perfect for business applications.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>No frills design</li>
+                            <li>Business-focused</li>
+                            <li>Professional appearance</li>
+                            <li>Easy to customize</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/clean" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Hero Grid Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">12. Hero Grid Layout</h3>
+                                <span class="badge badge-custom bg-info">Grid-Based</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.hero-grid</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            📐
+                        </div>
+
+                        <p class="mb-3">Grid-based hero layout with feature showcase and testimonials.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>CSS Grid layout</li>
+                            <li>Feature grid</li>
+                            <li>Hero section</li>
+                            <li>Marketing elements</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/hero-grid" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Sidebar Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">13. Sidebar Layout</h3>
+                                <span class="badge badge-custom bg-warning">Unique</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.auth.sidebar</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            📱
+                        </div>
+
+                        <p class="mb-3">Sidebar-based authentication with navigation-style layout.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Sidebar navigation</li>
+                            <li>Multi-step forms</li>
+                            <li>Progressive disclosure</li>
+                            <li>Wizard-style auth</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/auth/sidebar" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                </section>
+
+                <!-- Admin Layouts -->
+                <section id="admin-layouts" class="mb-5">
+                    <h2 class="mb-4">Admin Dashboard Layouts (5)</h2>
+                    <p class="lead">Professional admin panels with Bootstrap offcanvas responsive sidebars and dark mode.</p>
+
+                    <!-- Sidebar Admin Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">1. Sidebar Layout (Recommended)</h3>
+                                <span class="badge badge-custom bg-primary">Default</span>
+                                <span class="badge badge-custom bg-success">Responsive</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.admin.sidebar</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            📊
+                        </div>
+
+                        <p class="mb-3">Classic sidebar navigation with collapsible menu. Uses Bootstrap's JavaScript for toggle functionality.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Fixed sidebar on desktop</li>
+                            <li>Collapsible mobile menu</li>
+                            <li>Bootstrap JavaScript toggle</li>
+                            <li>Sticky header</li>
+                            <li>Dark mode compatible</li>
+                            <li>Breadcrumb navigation</li>
+                        </ul>
+
+                        <h5>Usage:</h5>
+                        <div class="code-block">
+<pre>@extends('layouts.starterkit.admin.sidebar')
+
+@section('title', 'Dashboard')
+@section('page-header')
+    &lt;h1&gt;Dashboard&lt;/h1&gt;
+@endsection
+
+@section('content')
+    &lt;!-- Your admin content --&gt;
+@endsection</pre>
+                        </div>
+
+                        <a href="http://127.0.0.1:8000/test/admin/sidebar" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Top Nav Admin Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">2. Top Navigation Layout</h3>
+                                <span class="badge badge-custom bg-info">Horizontal</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.admin.topnav</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            ⬆️
+                        </div>
+
+                        <p class="mb-3">Horizontal navigation bar with dropdown menus. Perfect for applications with fewer menu items.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Horizontal menu bar</li>
+                            <li>Bootstrap dropdowns</li>
+                            <li>Mega menu support</li>
+                            <li>Sticky top navigation</li>
+                            <li>Mobile hamburger menu</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/admin/topnav" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Minimal Admin Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">3. Minimal Admin Layout</h3>
+                                <span class="badge badge-custom bg-secondary">Clean</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.admin.minimal</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            ⚪
+                        </div>
+
+                        <p class="mb-3">Minimalist admin interface with focus on content. Clean and distraction-free.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Minimal chrome</li>
+                            <li>Content-focused</li>
+                            <li>Clean typography</li>
+                            <li>Spacious layout</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/admin/minimal" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Neo Admin Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">4. Neo Layout</h3>
+                                <span class="badge badge-custom bg-success">Modern</span>
+                                <span class="badge badge-custom bg-warning">Futuristic</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.admin.neo</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            🚀
+                        </div>
+
+                        <p class="mb-3">Futuristic admin design with glassmorphism and modern UI patterns. Perfect for tech companies.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Glassmorphic elements</li>
+                            <li>Futuristic aesthetics</li>
+                            <li>Command palette</li>
+                            <li>Shortcut keys</li>
+                            <li>Rail-based navigation</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/admin/neo" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                    <!-- Classic Admin Layout -->
+                    <div class="layout-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h3 class="h4 mb-1">5. Classic Layout</h3>
+                                <span class="badge badge-custom bg-secondary">Traditional</span>
+                            </div>
+                            <code class="text-muted">layouts.starterkit.admin.classic</code>
+                        </div>
+                        
+                        <div class="layout-preview">
+                            📈
+                        </div>
+
+                        <p class="mb-3">Traditional admin panel design. Familiar and user-friendly interface.</p>
+
+                        <ul class="feature-list mb-3">
+                            <li>Classic admin styling</li>
+                            <li>Familiar patterns</li>
+                            <li>Easy to navigate</li>
+                            <li>Professional appearance</li>
+                            <li>Wide compatibility</li>
+                        </ul>
+
+                        <a href="http://127.0.0.1:8000/test/admin/classic" target="_blank" class="btn btn-primary btn-sm">View Live Demo</a>
+                    </div>
+
+                </section>
+
+                <!-- Dark Mode Section -->
+                <section id="dark-mode" class="mb-5">
+                    <h2 class="mb-4">Dark Mode Implementation</h2>
+                    <p class="lead">All layouts support Bootstrap's native dark mode system using data-bs-theme attribute.</p>
+
+                    <h4>Enable Dark Mode:</h4>
+                    <div class="code-block">
+<pre>&lt;!-- Add to &lt;html&gt; tag --&gt;
+&lt;html lang="en" data-bs-theme="dark"&gt;</pre>
+                    </div>
+
+                    <h4 class="mt-4">JavaScript Toggle:</h4>
+                    <div class="code-block">
+<pre>function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-bs-theme', savedTheme);</pre>
+                    </div>
+
+                    <h4 class="mt-4">System Preference Detection:</h4>
+                    <div class="code-block">
+<pre>// Detect system preference
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-bs-theme', 'dark');
+}</pre>
+                    </div>
+
+                    <div class="alert alert-info mt-3">
+                        <strong>💡 CSS Variables:</strong> All layouts use CSS custom properties that automatically switch based on the theme:
+                        <ul class="mb-0 mt-2">
+                            <li><code>--auth-bg</code>, <code>--auth-text</code>, <code>--auth-card-bg</code></li>
+                            <li><code>--admin-bg</code>, <code>--admin-sidebar-bg</code>, <code>--admin-text</code></li>
+                            <li>Colors transition smoothly when theme changes</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Bootstrap System -->
+                <section id="bootstrap" class="mb-5">
+                    <h2 class="mb-4">Bootstrap Integration</h2>
+                    <p class="lead">All layouts are built with Bootstrap 5.3.8 following best practices.</p>
+
+                    <h4>Architecture:</h4>
+                    <div class="code-block">
+<pre>SCSS Structure:
+├── Variables (Bootstrap-compatible)
+├── Bootstrap Core Import
+├── Dark Mode Variables
+└── Custom Components
+
+Custom styles OVERRIDE Bootstrap using !important flags.</pre>
+                    </div>
+
+                    <h4 class="mt-4">Form Components:</h4>
+                    <p>All form controls are completely overridden while maintaining Bootstrap's semantic HTML structure:</p>
+                    <ul>
+                        <li><strong>.form-control</strong> - Custom input styling with focus states</li>
+                        <li><strong>.form-select</strong> - Custom dropdown styling</li>
+                        <li><strong>.form-check-input</strong> - Custom checkbox/radio with ::before pseudo-elements</li>
+                        <li><strong>.btn-primary</strong> - Custom gradient buttons</li>
+                    </ul>
+
+                    <h4 class="mt-4">Admin Responsive Sidebar:</h4>
+                    <p>The admin sidebar layout uses Bootstrap's JavaScript for responsive behavior:</p>
+                    <ul>
+                        <li>Desktop: Fixed sidebar with toggle collapse</li>
+                        <li>Mobile: Sidebar collapses completely, triggered by hamburger menu</li>
+                        <li>Pure JavaScript toggle (no jQuery required)</li>
+                        <li>Smooth transitions with CSS</li>
+                    </ul>
+
+                    <div class="code-block">
+<pre>// Sidebar toggle implementation
+document.getElementById('sidebarToggle')?.addEventListener('click', function() {
+    document.querySelector('.admin-layout-sidebar')
+            .classList.toggle('sidebar-collapsed');
+});</pre>
+                    </div>
+                </section>
+
+                <!-- Customization -->
+                <section id="customization" class="mb-5">
+                    <h2 class="mb-4">Customization Guide</h2>
+
+                    <h4>Change Default Layout:</h4>
+                    <div class="code-block">
+<pre>// In .env file
+STARTERKIT_AUTH_LAYOUT=particles
+STARTERKIT_ADMIN_LAYOUT=sidebar
+
+// In config/starterkit.php
+'auth_layout' => env('STARTERKIT_AUTH_LAYOUT', 'particles'),
+'admin_layout' => env('STARTERKIT_ADMIN_LAYOUT', 'sidebar'),</pre>
+                    </div>
+
+                    <h4 class="mt-4">Customize Colors:</h4>
+                    <div class="code-block">
+<pre>// In resources/css/auth/_variables.scss
+$primary: #00aaff;  // Your brand color
+$body-bg: #f8f9fa;  // Light mode background
+
+// In resources/css/auth/_variables.scss (dark mode)
+$body-bg-dark: #0f172a;  // Dark mode background</pre>
+                    </div>
+
+                    <h4 class="mt-4">Add Custom Layout:</h4>
+                    <ol>
+                        <li>Create new Blade file: <code>resources/views/layouts/starterkit/auth/my-layout.blade.php</code></li>
+                        <li>Extend base structure and use auth components</li>
+                        <li>Add SCSS in <code>resources/css/auth/_layouts.scss</code></li>
+                        <li>Build assets: <code>npm run build</code></li>
+                    </ol>
+                </section>
+
+                <!-- Package Usage -->
+                <section id="package-usage" class="mb-5">
+                    <h2 class="mb-4">Package Usage</h2>
+
+                    <h4>Available Commands:</h4>
+                    <div class="code-block">
+<pre># Install complete StarterKit
+php artisan starterkit:install
+
+# Install with specific layout
+php artisan starterkit:install --layout=particles
+
+# Force overwrite existing files
+php artisan starterkit:install --force
+
+# Publish specific assets
+php artisan starterkit:publish --tag=views
+php artisan starterkit:publish --tag=assets
+php artisan starterkit:publish --tag=config</pre>
+                    </div>
+
+                    <h4 class="mt-4">Directory Structure After Installation:</h4>
+                    <div class="code-block">
+<pre>resources/
+├── views/
+│   └── layouts/
+│       └── starterkit/
+│           ├── auth/      (13 layouts)
+│           └── admin/     (5 layouts)
+├── css/
+│   ├── auth.scss
+│   ├── admin.scss
+│   └── auth/, admin/ (modular SCSS files)
+└── js/
+    ├── auth.js
+    └── admin.js
+
+public/
+└── build/
+    └── assets/
+        ├── auth.css
+        ├── auth2.js
+        ├── admin.css
+        └── admin2.js</pre>
+                    </div>
+
+                    <h4 class="mt-4">Build Assets:</h4>
+                    <div class="code-block">
+<pre># Development
+npm run dev
+
+# Production
+npm run build
+
+# Watch mode
+npm run dev -- --watch</pre>
+                    </div>
+                </section>
+
+                <!-- Features Summary -->
+                <section id="features" class="mb-5">
+                    <h2 class="mb-4">Complete Feature List</h2>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Authentication</h4>
+                            <ul class="feature-list">
+                                <li>13 unique layouts</li>
+                                <li>Form validation (client-side)</li>
+                                <li>Processing state handling</li>
+                                <li>Error message display</li>
+                                <li>Remember me functionality</li>
+                                <li>Password visibility toggle</li>
+                                <li>Particles.js integration</li>
+                                <li>Animated backgrounds</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Admin Dashboard</h4>
+                            <ul class="feature-list">
+                                <li>5 professional layouts</li>
+                                <li>Responsive sidebar (Bootstrap)</li>
+                                <li>Collapsible navigation</li>
+                                <li>Breadcrumb support</li>
+                                <li>Search functionality</li>
+                                <li>User avatar display</li>
+                                <li>Stats/metrics display</li>
+                                <li>Mobile-friendly</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h4>Design System</h4>
+                            <ul class="feature-list">
+                                <li>Bootstrap 5.3.8</li>
+                                <li>Custom form controls</li>
+                                <li>Dark mode (native)</li>
+                                <li>CSS custom properties</li>
+                                <li>Smooth transitions</li>
+                                <li>Modular SCSS</li>
+                                <li>!important overrides</li>
+                                <li>Responsive breakpoints</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Developer Experience</h4>
+                            <ul class="feature-list">
+                                <li>Laravel 11 compatible</li>
+                                <li>Fortify integration</li>
+                                <li>Vite build system</li>
+                                <li>Static asset names</li>
+                                <li>Artisan commands</li>
+                                <li>Test routes included</li>
+                                <li>Complete documentation</li>
+                                <li>Easy customization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Support -->
+                <section id="support" class="mb-5">
+                    <h2 class="mb-4">Support & Resources</h2>
+                    
+                    <div class="alert alert-primary">
+                        <h5>📚 Additional Documentation</h5>
+                        <ul class="mb-0">
+                            <li><strong>STARTER_KIT_GUIDE.md</strong> - Complete setup guide</li>
+                            <li><strong>SCSS_COMPONENTS_GUIDE.md</strong> - All CSS classes and components</li>
+                            <li><strong>DARK_MODE_GUIDE.md</strong> - Dark mode implementation details</li>
+                            <li><strong>LAYOUTS_DOCUMENTATION.html</strong> - This document</li>
+                        </ul>
+                    </div>
+
+                    <h4 class="mt-4">Browser Compatibility:</h4>
+                    <ul>
+                        <li>✅ Chrome/Edge 90+</li>
+                        <li>✅ Firefox 88+</li>
+                        <li>✅ Safari 14+</li>
+                        <li>✅ Mobile browsers (iOS/Android)</li>
+                    </ul>
+
+                    <h4 class="mt-4">Requirements:</h4>
+                    <ul>
+                        <li>PHP 8.1+ / 8.2 / 8.3</li>
+                        <li>Laravel 11.x</li>
+                        <li>Node.js 18+ & NPM</li>
+                        <li>Composer 2.x</li>
+                    </ul>
+
+                    <h4 class="mt-4">Live Demo:</h4>
+                    <p><a href="http://127.0.0.1:8000/test/layouts" target="_blank" class="btn btn-lg btn-primary">View All Layouts Demo</a></p>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Artflow Studio StarterKit</h5>
+                    <p class="text-muted">Beautiful Laravel authentication and admin starter kit with 18 layouts, Bootstrap 5, and dark mode.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Package: <code>artflow-studio/starterkit</code></p>
+                    <p class="mb-0 text-muted">Version 1.0.0 • MIT License</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

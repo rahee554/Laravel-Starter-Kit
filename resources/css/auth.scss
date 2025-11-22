@@ -1,0 +1,27 @@
+// ============================================
+// AUTH SYSTEM - Bootstrap-First Approach
+// ============================================
+// 1. Import variables BEFORE Bootstrap
+// 2. Import Bootstrap
+// 3. Import custom components AFTER Bootstrap
+
+// ============================================
+// 1. Custom Variables (Override Bootstrap)
+// ============================================
+@import 'auth/variables';
+
+// ============================================
+// 2. Import Bootstrap 5.3.8 from node_modules
+// ============================================
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+// ============================================
+// 3. Import Custom Base & Components
+// (These extend Bootstrap, not replace it)
+// ============================================
+@import 'auth/reset';
+@import 'auth/forms';
+@import 'auth/buttons';
+@import 'auth/components';
+@import 'auth/layouts';
+@import 'auth/animations';

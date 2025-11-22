@@ -1,0 +1,351 @@
+// ============================================
+// LANDING PAGE SECTIONS
+// ============================================
+
+// Navbar
+.landing-navbar {
+    padding: 1.25rem 0;
+    background: white;
+    border-bottom: 1px solid $gray-200;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: $transition-base;
+
+    &.scrolled {
+        box-shadow: $box-shadow;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, $primary, lighten($primary, 10%));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
+    .nav-link {
+        color: $gray-700;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: $transition-base;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: $primary;
+            transition: $transition-base;
+            transform: translateX(-50%);
+        }
+
+        &:hover,
+        &.active {
+            color: $primary;
+
+            &::after {
+                width: 80%;
+            }
+        }
+    }
+
+    .btn-primary {
+        padding: 0.5rem 1.5rem;
+        font-weight: 600;
+        border-radius: $border-radius-pill;
+    }
+}
+
+// Hero Section Content
+.hero-content {
+    position: relative;
+    z-index: 1;
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: $dark;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+
+        .text-gradient {
+            background: linear-gradient(135deg, $primary, lighten($primary, 15%));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+    }
+
+    .lead {
+        font-size: 1.25rem;
+        color: $gray-600;
+        margin-bottom: 2rem;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .btn {
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            border-radius: $border-radius-pill;
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.25rem;
+        }
+
+        .lead {
+            font-size: 1.125rem;
+        }
+
+        .hero-buttons {
+            flex-direction: column;
+            width: 100%;
+
+            .btn {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.hero-image {
+    position: relative;
+    z-index: 1;
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: $border-radius-xl;
+        box-shadow: $box-shadow-xl;
+    }
+
+    @media (max-width: 768px) {
+        margin-top: 3rem;
+    }
+}
+
+// Features Section
+.features-section {
+    padding: 6rem 0;
+    background: white;
+
+    .section-header {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 4rem;
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: $dark;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: $gray-600;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 4rem 0;
+
+        .section-header h2 {
+            font-size: 2rem;
+        }
+    }
+}
+
+// Pricing Section
+.pricing-section {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, white 0%, rgba($primary, 0.02) 100%);
+
+    .section-header {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 4rem;
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: $dark;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: $gray-600;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 4rem 0;
+
+        .section-header h2 {
+            font-size: 2rem;
+        }
+    }
+}
+
+// Testimonials Section
+.testimonials-section {
+    padding: 6rem 0;
+    background: white;
+
+    .section-header {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 4rem;
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: $dark;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: $gray-600;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 4rem 0;
+
+        .section-header h2 {
+            font-size: 2rem;
+        }
+    }
+}
+
+// Stats Section
+.stats-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, rgba($primary, 0.05) 0%, rgba($primary, 0.02) 100%);
+    border-top: 1px solid $gray-200;
+    border-bottom: 1px solid $gray-200;
+
+    @media (max-width: 768px) {
+        padding: 3rem 0;
+    }
+}
+
+// Footer
+.landing-footer {
+    background: $dark;
+    color: white;
+    padding: 4rem 0 2rem;
+
+    .footer-brand {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .footer-description {
+        color: rgba(white, 0.7);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .footer-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: white;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 0.75rem;
+
+            a {
+                color: rgba(white, 0.7);
+                text-decoration: none;
+                transition: $transition-base;
+
+                &:hover {
+                    color: white;
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(white, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: $transition-base;
+
+            &:hover {
+                background: $primary;
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    .footer-bottom {
+        border-top: 1px solid rgba(white, 0.1);
+        margin-top: 3rem;
+        padding-top: 2rem;
+        text-align: center;
+        color: rgba(white, 0.6);
+        font-size: 0.875rem;
+
+        a {
+            color: rgba(white, 0.7);
+            text-decoration: none;
+            transition: $transition-base;
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 3rem 0 1.5rem;
+
+        .footer-col {
+            margin-bottom: 2rem;
+        }
+    }
+}

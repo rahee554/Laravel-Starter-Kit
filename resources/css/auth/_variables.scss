@@ -1,0 +1,105 @@
+// ============================================
+// AUTH SYSTEM VARIABLES - Bootstrap Compatible
+// ============================================
+// These variables override Bootstrap defaults
+// and support dark mode via data-bs-theme
+
+// Color Palette - Override Bootstrap
+$primary: #00aaff !default;
+$secondary: #64748b !default;
+$success: #10b981 !default;
+$danger: #ef4444 !default;
+$warning: #f59e0b !default;
+$info: #00aaff !default;
+$light: #f8fafc !default;
+$dark: #0f172a !default;
+
+// Body defaults - Override Bootstrap
+$body-bg: #ffffff !default;
+$body-color: #1e293b !default;
+
+// Dark mode overrides
+$body-bg-dark: #0f172a !default;
+$body-color-dark: #e2e8f0 !default;
+
+// Form controls - Override Bootstrap
+$input-bg: #ffffff !default;
+$input-border-color: #e2e8f0 !default;
+$input-border-width: 1px !default;
+$input-border-radius: 0.5rem !default;
+$input-focus-border-color: $primary !default;
+$input-focus-box-shadow: 0 0 0 0.25rem rgba($primary, 0.1) !default;
+$input-placeholder-color: #94a3b8 !default;
+$input-color: #1e293b !default;
+
+// Dark mode form controls
+$input-bg-dark: #1e293b !default;
+$input-border-color-dark: #334155 !default;
+$input-color-dark: #e2e8f0 !default;
+$input-placeholder-color-dark: #64748b !default;
+
+// Border radius - Override Bootstrap
+$border-radius: 0.5rem !default;
+$border-radius-sm: 0.375rem !default;
+$border-radius-lg: 0.75rem !default;
+$border-radius-pill: 50rem !default;
+
+// Font customization - Override Bootstrap
+$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !default;
+$font-size-base: 0.9375rem !default;
+$line-height-base: 1.5 !default;
+
+// Enable dark mode
+$enable-dark-mode: true !default;
+
+// CSS Custom Properties - Light and Dark Mode
+:root,
+[data-bs-theme="light"] {
+    // Colors
+    --bs-primary: #{$primary};
+    --bs-body-bg: #{$body-bg};
+    --bs-body-color: #{$body-color};
+    
+    // Custom auth variables
+    --auth-primary: #{$primary};
+    --auth-primary-dark: #0088cc;
+    --auth-primary-light: #4fd4ff;
+    --auth-bg: #{$body-bg};
+    --auth-text: #{$body-color};
+    --auth-border: #{$input-border-color};
+    --auth-input-bg: #{$input-bg};
+    --auth-input-border: #{$input-border-color};
+    --auth-input-text: #{$input-color};
+    --auth-placeholder: #{$input-placeholder-color};
+    --auth-card-bg: #ffffff;
+    --auth-shadow: rgba(0, 0, 0, 0.1);
+    
+    // Transitions
+    --transition-base: all 0.2s ease;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+// Dark mode overrides
+[data-bs-theme="dark"] {
+    // Bootstrap overrides
+    --bs-body-bg: #{$body-bg-dark};
+    --bs-body-color: #{$body-color-dark};
+    --bs-border-color: #334155;
+    
+    // Custom auth variables
+    --auth-bg: #{$body-bg-dark};
+    --auth-text: #{$body-color-dark};
+    --auth-border: #{$input-border-color-dark};
+    --auth-input-bg: #{$input-bg-dark};
+    --auth-input-border: #{$input-border-color-dark};
+    --auth-input-text: #{$input-color-dark};
+    --auth-placeholder: #{$input-placeholder-color-dark};
+    --auth-card-bg: #1e293b;
+    --auth-shadow: rgba(0, 0, 0, 0.3);
+    
+    // Keep primary colors consistent
+    --auth-primary: #{$primary};
+    --auth-primary-dark: #0088cc;
+    --auth-primary-light: #4fd4ff;
+}

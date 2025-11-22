@@ -1,0 +1,295 @@
+// ============================================
+// ADMIN SHELL & COMMAND RAIL
+// ============================================
+
+.admin-shell {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bs-body-bg);
+    position: relative;
+    isolation: isolate;
+
+    &.sidebar-collapsed {
+        .admin-shell__sidebar {
+            transform: translateX(-100%);
+        }
+
+        .admin-shell__main {
+            margin-left: 0;
+        }
+    }
+}
+
+.admin-shell__sidebar {
+    width: 300px;
+    background: linear-gradient(180deg, #0f172a, #111827);
+    color: white;
+    padding: 2rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: 1024px) {
+        position: fixed;
+        inset: 0 auto 0 0;
+        height: 100vh;
+        transform: translateX(-100%);
+        box-shadow: 0 20px 60px rgba(15, 23, 42, 0.45);
+    }
+}
+
+.admin-shell__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f5f7fb;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+
+.admin-shell__header {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+
+    h1 {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--color-dark);
+    }
+
+    p {
+        margin: 0.35rem 0 0;
+        color: #64748b;
+        max-width: 38rem;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.25rem 1.5rem;
+    }
+}
+
+.admin-shell__header-info {
+    flex: 1;
+}
+
+.admin-shell__header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.admin-shell__toolbar {
+    padding: 1rem 2rem;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-shell__content {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+        padding: 1.5rem;
+    }
+}
+
+.admin-shell__footer {
+    padding: 1.25rem 2rem;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    a {
+        color: var(--color-primary);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .admin-shell__footer-links {
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+.admin-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-brand__logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, rgba(0, 170, 255, 0.35), rgba(99, 102, 241, 0.6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.admin-brand__eyebrow {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 0.25rem;
+}
+
+.admin-brand__title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.admin-shell__toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    padding: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
+.admin-shell__nav {
+    flex: 1;
+}
+
+.admin-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 0.75rem;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: all 0.2s ease;
+
+    &__icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 0.75rem;
+        background: rgba(255, 255, 255, 0.08);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    &.is-active,
+    &:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: white;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+}
+
+.admin-shell__sidebar-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+}
+
+.admin-shell__sidebar-label {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.75rem;
+}
+
+.admin-shell__status {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+
+    span {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    strong {
+        display: block;
+        font-size: 1.1rem;
+        color: white;
+    }
+}
+
+.admin-shell__search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    min-width: 240px;
+    background: #f8fafc;
+
+    input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        font-size: 0.95rem;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+// Toggle behavior for mobile
+@media (max-width: 768px) {
+    .admin-shell.sidebar-open .admin-shell__sidebar {
+        transform: translateX(0);
+    }
+}
