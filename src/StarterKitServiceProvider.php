@@ -82,6 +82,7 @@ class StarterKitServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\InstallCommand::class,
+                Console\PublishFortifyServiceProvider::class,
             ]);
         }
     }

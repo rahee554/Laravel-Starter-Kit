@@ -101,6 +101,13 @@ class InstallCommand extends Command
         $this->line('  ✓ Event listeners');
         $this->newLine();
         
+        // Publish FortifyServiceProvider
+        $this->info('🔐 Publishing Fortify Service Provider...');
+        if ($this->confirm('Update FortifyServiceProvider with StarterKit views?', true)) {
+            $this->call('starterkit:publish-fortify-provider');
+        }
+        $this->newLine();
+        
         // Middleware registration instructions
         $this->info('📌 Important: Register Middleware');
         $this->line('Add CustomAuthMiddleware to app/Http/Kernel.php:');
