@@ -1,4 +1,4 @@
-@extends('layouts.starterkit.auth.particles')
+@extends($layout ?? \ArtflowStudio\StarterKit\Helpers\StarterKitHelper::getDefaultAuthLayoutView())
 
 @section('title', 'Sign In')
 @section('description', 'Welcome back! Please enter your credentials')

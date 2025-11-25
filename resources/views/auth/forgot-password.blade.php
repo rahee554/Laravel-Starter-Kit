@@ -1,4 +1,4 @@
-@extends('layouts.starterkit.auth.clean')
+@extends($layout ?? \ArtflowStudio\StarterKit\Helpers\StarterKitHelper::getDefaultAuthLayoutView())
 
 @section('title', 'Reset Password')
 @section('description', "Enter your email and we'll send you a reset link")

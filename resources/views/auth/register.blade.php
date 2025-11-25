@@ -1,4 +1,4 @@
-@extends('layouts.starterkit.auth.clean')
+@extends($layout ?? \ArtflowStudio\StarterKit\Helpers\StarterKitHelper::getDefaultAuthLayoutView())
 
 @section('title', 'Create Account')
 @section('description', 'Join us and start your journey today')

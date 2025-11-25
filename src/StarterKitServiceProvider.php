@@ -2,9 +2,11 @@
 
 namespace ArtflowStudio\StarterKit;
 
-use Illuminate\Support\ServiceProvider;
 use ArtflowStudio\StarterKit\Helpers\StarterKitHelper;
+use ArtflowStudio\StarterKit\Providers\StarterKitFortifyServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\ServiceProvider;
 
 class StarterKitServiceProvider extends ServiceProvider
 {
@@ -24,19 +26,19 @@ class StarterKitServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Load views
+        // Load views from the package directory
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'starterkit');
-
-        // Register view aliases for default layouts
-        $this->registerViewAliases();
 
         // Register Blade helpers
         $this->registerBladeHelpers();
 
-        // Publish auth layouts (published by default on install)
-        $this->publishes([
-            __DIR__.'/../resources/views/layouts/starterkit/auth' => resource_path('views/layouts/starterkit/auth'),
-        ], 'starterkit-auth-layouts');
+        // Register the Fortify Service Provider that configures StarterKit views
+        // Only register if Fortify is installed (config exists)
+        if (file_exists(config_path('fortify.php'))) {
+            $this->app->register(StarterKitFortifyServiceProvider::class);
+        } else {
+            Log::info('StarterKit: Fortify config not found. Fortify views and rate limiting will not be registered. Run fortify:install first.');
+        }
 
         // Publish pre-built assets (published by default on install)
         $this->publishes([
@@ -48,41 +50,15 @@ class StarterKitServiceProvider extends ServiceProvider
             __DIR__.'/../config/starterkit.php' => config_path('starterkit.php'),
         ], 'starterkit-config');
 
-        // Publish custom auth middleware
-        $this->publishes([
-            __DIR__.'/Http/Middleware/CustomAuthMiddleware.php' => app_path('Http/Middleware/CustomAuthMiddleware.php'),
-        ], 'starterkit-middleware');
-
-        // Publish custom auth listener
-        $this->publishes([
-            __DIR__.'/Listeners/AuthenticationListener.php' => app_path('Listeners/AuthenticationListener.php'),
-        ], 'starterkit-listeners');
-
-        // Publish custom auth service
-        $this->publishes([
-            __DIR__.'/Services/AuthService.php' => app_path('Services/AuthService.php'),
-        ], 'starterkit-services');
-
         // Optional: Publish documentation
         $this->publishes([
             __DIR__.'/../docs' => base_path('docs/starterkit'),
         ], 'starterkit-docs');
 
-        // Optional: Publish database migrations
-        $this->publishes([
-            __DIR__.'/../database/migrations' => database_path('migrations'),
-        ], 'starterkit-migrations');
-
-        // Optional: Publish admin layouts
-        $this->publishes([
-            __DIR__.'/../resources/views/layouts/starterkit/admin' => resource_path('views/vendor/starterkit/layouts/admin'),
-        ], 'starterkit-admin-layouts');
-
         // Register commands
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\InstallCommand::class,
-                Console\PublishFortifyServiceProvider::class,
             ]);
         }
     }

@@ -1,4 +1,4 @@
-@extends('layouts.starterkit.auth.clean')
+@extends($layout ?? \ArtflowStudio\StarterKit\Helpers\StarterKitHelper::getDefaultAuthLayoutView())
 
 @section('page_title', 'Create New Password')
 

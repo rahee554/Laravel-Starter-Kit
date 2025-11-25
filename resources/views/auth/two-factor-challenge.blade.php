@@ -1,4 +1,4 @@
-@extends('layouts.starterkit.auth.minimal')
+@extends($layout ?? \ArtflowStudio\StarterKit\Helpers\StarterKitHelper::getDefaultAuthLayoutView())
 
 @section('title', 'Two-Factor Authentication')
 @section('description', 'Enter your authentication code to continue')

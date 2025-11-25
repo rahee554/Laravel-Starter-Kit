@@ -1,4 +1,4 @@
-@extends('layouts.starterkit.auth.minimal')
+@extends($layout ?? \ArtflowStudio\StarterKit\Helpers\StarterKitHelper::getDefaultAuthLayoutView())
 
 @section('title', 'Verify Email')
 @section('description', 'Please verify your email address to continue')

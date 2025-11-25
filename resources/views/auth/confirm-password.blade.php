@@ -1,4 +1,4 @@
-@extends('layouts.starterkit.auth.centered')
+@extends($layout ?? \ArtflowStudio\StarterKit\Helpers\StarterKitHelper::getDefaultAuthLayoutView())
 
 @section('title', 'Confirm Password')
 @section('description', 'Please confirm your password to continue')
