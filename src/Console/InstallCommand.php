@@ -21,14 +21,14 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Install Artflow Studio StarterKit with authentication layouts and Fortify integration';
+    protected $description = 'Install StarterKit with authentication layouts and custom services';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $this->info('🚀 Installing Artflow Studio StarterKit...');
+        $this->info('🚀 Installing StarterKit...');
         $this->newLine();
 
         // 1. Install Fortify first if not already installed
@@ -61,13 +61,30 @@ class InstallCommand extends Command
             '--force' => $this->option('force')
         ]);
 
-        // 5. Copy routes
+        // 5. Publish custom services and middleware
+        $this->info('🔧 Publishing custom auth services...');
+        $this->call('vendor:publish', [
+            '--tag' => 'starterkit-services',
+            '--force' => $this->option('force')
+        ]);
+
+        $this->call('vendor:publish', [
+            '--tag' => 'starterkit-middleware',
+            '--force' => $this->option('force')
+        ]);
+
+        $this->call('vendor:publish', [
+            '--tag' => 'starterkit-listeners',
+            '--force' => $this->option('force')
+        ]);
+
+        // 6. Copy routes
         $this->copyRoutes();
 
-        // 6. Update .env for layout selection
+        // 7. Update .env for layout selection
         $this->updateEnvFile();
 
-        // 7. Run migrations if desired
+        // 8. Run migrations if desired
         if ($this->confirm('Run database migrations?', true)) {
             $this->call('migrate');
         }
@@ -76,29 +93,22 @@ class InstallCommand extends Command
         $this->info('✅ StarterKit installed successfully!');
         $this->newLine();
         $this->line('What\'s included:');
-        $this->line('  ✓ 13 authentication layouts (pre-published)');
-        $this->line('  ✓ 5 admin layouts (available if needed)');
-        $this->line('  ✓ Pre-built CSS/JS (no build required!)');
+        $this->line('  ✓ 13 authentication layouts');
+        $this->line('  ✓ Pre-built CSS/JS (no build required)');
         $this->line('  ✓ Laravel Fortify integration');
-        $this->line('  ✓ Custom auth services & middleware');
+        $this->line('  ✓ Custom auth middleware');
+        $this->line('  ✓ Custom auth services');
+        $this->line('  ✓ Event listeners');
         $this->newLine();
         $this->line('Next steps:');
         $this->line('  1. Visit /login to see your authentication pages');
         $this->line('  2. Visit /test/layouts to preview all layouts');
-        $this->line('  3. Configure your custom auth logic in app/Services/AuthService.php');
+        $this->line('  3. Customize app/Services/AuthService.php for your logic');
+        $this->line('  4. Register listeners in app/Providers/EventServiceProvider.php');
         $this->newLine();
         $this->line('Optional commands:');
-        $this->line('  php artisan vendor:publish --tag=starterkit-docs');
         $this->line('  php artisan vendor:publish --tag=starterkit-admin-layouts');
-        $this->line('  php artisan vendor:publish --tag=starterkit-migrations');
-        $this->newLine();
-        $this->line('Auth layouts (13 options):');
-        $this->line('  centered, split, minimal, glass, particles,');
-        $this->line('  hero, modern, 3d, premium-dark, gradient-flow,');
-        $this->line('  clean, hero-grid, sidebar');
-        $this->newLine();
-        $this->line('Admin layouts (5 options):');
-        $this->line('  sidebar, topnav, minimal, neo, classic');
+        $this->line('  php artisan vendor:publish --tag=starterkit-docs');
         $this->newLine();
 
         return Command::SUCCESS;
@@ -126,7 +136,7 @@ class InstallCommand extends Command
         $webRoutesContent = File::get($webRoutesPath);
 
         if (!str_contains($webRoutesContent, "require __DIR__.'/test-layouts.php'")) {
-            $addition = "\n// StarterKit Test Layout Routes\nrequire __DIR__.'/test-layouts.php';\n";
+            $addition = "\n// StarterKit Layout Testing Routes\nrequire __DIR__.'/test-layouts.php';\n";
             File::append($webRoutesPath, $addition);
             $this->info('✓ Layout test routes linked to web.php');
         }

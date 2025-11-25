@@ -2,7 +2,6 @@
 
 namespace ArtflowStudio\StarterKit;
 
-use ArtflowStudio\StarterKit\Providers\StarterKitFortifyServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class StarterKitServiceProvider extends ServiceProvider
@@ -16,9 +15,6 @@ class StarterKitServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/starterkit.php', 'starterkit'
         );
-
-        // Register Fortify service provider
-        $this->app->register(StarterKitFortifyServiceProvider::class);
     }
 
     /**
@@ -44,12 +40,20 @@ class StarterKitServiceProvider extends ServiceProvider
             __DIR__.'/../config/starterkit.php' => config_path('starterkit.php'),
         ], 'starterkit-config');
 
-        // Optional: Publish Fortify config (can be requested by user)
-        if ($this->app->make('files')->exists(config_path('fortify.php'))) {
-            $this->publishes([
-                __DIR__.'/../config/fortify.php' => config_path('fortify.php'),
-            ], 'starterkit-fortify-config');
-        }
+        // Publish custom auth middleware
+        $this->publishes([
+            __DIR__.'/Http/Middleware/CustomAuthMiddleware.php' => app_path('Http/Middleware/CustomAuthMiddleware.php'),
+        ], 'starterkit-middleware');
+
+        // Publish custom auth listener
+        $this->publishes([
+            __DIR__.'/Listeners/AuthenticationListener.php' => app_path('Listeners/AuthenticationListener.php'),
+        ], 'starterkit-listeners');
+
+        // Publish custom auth service
+        $this->publishes([
+            __DIR__.'/Services/AuthService.php' => app_path('Services/AuthService.php'),
+        ], 'starterkit-services');
 
         // Optional: Publish documentation
         $this->publishes([
@@ -61,12 +65,15 @@ class StarterKitServiceProvider extends ServiceProvider
             __DIR__.'/../database/migrations' => database_path('migrations'),
         ], 'starterkit-migrations');
 
+        // Optional: Publish admin layouts
+        $this->publishes([
+            __DIR__.'/../resources/views/layouts/starterkit/admin' => resource_path('views/vendor/starterkit/layouts/admin'),
+        ], 'starterkit-admin-layouts');
+
         // Register commands
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\InstallCommand::class,
-                Console\PublishCommand::class,
-                Console\BuildPackageCommand::class,
             ]);
         }
     }
