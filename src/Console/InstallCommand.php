@@ -100,11 +100,25 @@ class InstallCommand extends Command
         $this->line('  ✓ Custom auth services');
         $this->line('  ✓ Event listeners');
         $this->newLine();
+        
+        // Middleware registration instructions
+        $this->info('📌 Important: Register Middleware');
+        $this->line('Add CustomAuthMiddleware to app/Http/Kernel.php:');
+        $this->line('  $routeMiddleware = [');
+        $this->line('      ...existing...');
+        $this->line("      'custom-auth' => \\App\\Http\\Middleware\\CustomAuthMiddleware::class,");
+        $this->line('  ];');
+        $this->newLine();
+        
+        // Verify assets exist
+        $this->verifyAssets();
+        
         $this->line('Next steps:');
         $this->line('  1. Visit /login to see your authentication pages');
         $this->line('  2. Visit /test/layouts to preview all layouts');
         $this->line('  3. Customize app/Services/AuthService.php for your logic');
         $this->line('  4. Register listeners in app/Providers/EventServiceProvider.php');
+        $this->line('  5. Add custom-auth middleware to routes that need protection');
         $this->newLine();
         $this->line('Optional commands:');
         $this->line('  php artisan vendor:publish --tag=starterkit-admin-layouts');
@@ -139,6 +153,20 @@ class InstallCommand extends Command
             $addition = "\n// StarterKit Layout Testing Routes\nrequire __DIR__.'/test-layouts.php';\n";
             File::append($webRoutesPath, $addition);
             $this->info('✓ Layout test routes linked to web.php');
+        }
+    }
+
+    /**
+     * Verify that published assets exist.
+     */
+    protected function verifyAssets()
+    {
+        $assetsCss = public_path('vendor/artflow-studio/starterkit/assets/auth.css');
+        $assetsJs = public_path('vendor/artflow-studio/starterkit/assets/auth.js');
+
+        if (!File::exists($assetsCss) || !File::exists($assetsJs)) {
+            $this->warn('⚠️  Warning: Pre-built assets not found!');
+            $this->line('Please run: php artisan vendor:publish --tag=starterkit-assets --force');
         }
     }
 

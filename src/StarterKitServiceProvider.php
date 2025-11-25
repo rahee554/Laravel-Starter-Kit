@@ -3,6 +3,8 @@
 namespace ArtflowStudio\StarterKit;
 
 use Illuminate\Support\ServiceProvider;
+use ArtflowStudio\StarterKit\Helpers\StarterKitHelper;
+use Illuminate\Support\Facades\Blade;
 
 class StarterKitServiceProvider extends ServiceProvider
 {
@@ -25,9 +27,15 @@ class StarterKitServiceProvider extends ServiceProvider
         // Load views
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'starterkit');
 
+        // Register view aliases for default layouts
+        $this->registerViewAliases();
+
+        // Register Blade helpers
+        $this->registerBladeHelpers();
+
         // Publish auth layouts (published by default on install)
         $this->publishes([
-            __DIR__.'/../resources/views/layouts/starterkit/auth' => resource_path('views/vendor/starterkit/layouts/auth'),
+            __DIR__.'/../resources/views/layouts/starterkit/auth' => resource_path('views/layouts/starterkit/auth'),
         ], 'starterkit-auth-layouts');
 
         // Publish pre-built assets (published by default on install)
@@ -76,5 +84,50 @@ class StarterKitServiceProvider extends ServiceProvider
                 Console\InstallCommand::class,
             ]);
         }
+    }
+
+    /**
+     * Register view aliases for default layouts.
+     * 
+     * Allows views to extend the default auth layout using:
+     * @extends('starterkit::auth.default')
+     */
+    protected function registerViewAliases(): void
+    {
+        // Get the default auth layout view
+        $defaultAuthLayout = StarterKitHelper::getDefaultAuthLayoutView();
+        
+        // Register an alias for easier reference
+        $this->app['view']->addNamespace('starterkit-auth-default', function () use ($defaultAuthLayout) {
+            return $defaultAuthLayout;
+        });
+    }
+
+    /**
+     * Register Blade helper directives.
+     */
+    protected function registerBladeHelpers(): void
+    {
+        // Get default auth layout
+        Blade::directive('starterKitDefaultAuthLayout', function () {
+            return "<?php echo '" . StarterKitHelper::getDefaultAuthLayoutView() . "'; ?>";
+        });
+
+        // Get default admin layout
+        Blade::directive('starterKitDefaultAdminLayout', function () {
+            return "<?php echo '" . StarterKitHelper::getDefaultAdminLayoutView() . "'; ?>";
+        });
+
+        // Get all auth layouts
+        Blade::directive('starterKitAuthLayouts', function () {
+            $layouts = StarterKitHelper::getAvailableAuthLayouts();
+            return "<?php echo json_encode(" . var_export($layouts, true) . "); ?>";
+        });
+
+        // Get all admin layouts
+        Blade::directive('starterKitAdminLayouts', function () {
+            $layouts = StarterKitHelper::getAvailableAdminLayouts();
+            return "<?php echo json_encode(" . var_export($layouts, true) . "); ?>";
+        });
     }
 }

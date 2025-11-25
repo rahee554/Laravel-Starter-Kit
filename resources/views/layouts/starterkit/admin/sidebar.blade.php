@@ -30,7 +30,7 @@
                 @hasSection('sidebar-nav')
                     @yield('sidebar-nav')
                 @else
-                    @include('layouts.starterkit.admin.partials.nav')
+                    @include('starterkit::layouts.starterkit.admin.partials.nav')
                 @endif
             </nav>
 

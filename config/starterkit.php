@@ -14,7 +14,7 @@ return [
     | - split: Split screen with branding
     | - minimal: Clean minimal design
     | - glass: Glassmorphism effect
-    | - particles: Animated particles background
+    | - particles: Animated particles background (DEFAULT)
     | - hero: Large hero section
     | - modern: Contemporary design
     | - 3d: Three-dimensional effects
@@ -23,10 +23,23 @@ return [
     | - clean: Minimalist approach
     | - hero-grid: Grid-based hero
     | - sidebar: Sidebar-based auth
+    | - base: Base layout (minimal HTML structure)
+    |
+    | Usage in Fortify Views:
+    | @extends(config('starterkit.auth_layout_view'))
+    | OR
+    | @php $helper = new \ArtflowStudio\StarterKit\Helpers\StarterKitHelper; @endphp
+    | @extends($helper::getDefaultAuthLayoutView())
     |
     */
 
     'auth_layout' => env('STARTERKIT_AUTH_LAYOUT', 'particles'),
+
+    /*
+    | Computed view path for default auth layout (read-only)
+    | Used internally by the package
+    */
+    'auth_layout_view' => fn() => \ArtflowStudio\StarterKit\Helpers\StarterKitHelper::getDefaultAuthLayoutView(),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,15 +49,27 @@ return [
     | This option controls which admin layout to use by default.
     |
     | Available layouts:
-    | - sidebar: Classic sidebar navigation (Bootstrap offcanvas responsive)
+    | - sidebar: Classic sidebar navigation (DEFAULT)
     | - topnav: Horizontal top navigation
     | - minimal: Clean minimalist admin
     | - neo: Modern futuristic admin
     | - classic: Traditional admin panel
     |
+    | Usage:
+    | @extends(config('starterkit.admin_layout_view'))
+    | OR
+    | @php $helper = new \ArtflowStudio\StarterKit\Helpers\StarterKitHelper; @endphp
+    | @extends($helper::getDefaultAdminLayoutView())
+    |
     */
 
     'admin_layout' => env('STARTERKIT_ADMIN_LAYOUT', 'sidebar'),
+
+    /*
+    | Computed view path for default admin layout (read-only)
+    | Used internally by the package
+    */
+    'admin_layout_view' => fn() => \ArtflowStudio\StarterKit\Helpers\StarterKitHelper::getDefaultAdminLayoutView(),
 
     /*
     |--------------------------------------------------------------------------

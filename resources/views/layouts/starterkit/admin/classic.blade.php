@@ -30,7 +30,7 @@
             </div>
 
             <div class="admin-shell__nav">
-                @include('layouts.starterkit.admin.partials.nav')
+                @include('starterkit::layouts.starterkit.admin.partials.nav')
             </div>
 
             <div class="admin-shell__sidebar-footer">

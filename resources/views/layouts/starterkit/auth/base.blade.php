@@ -6,7 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'StarterKit - Professional Authentication')</title>
     
-    @vite(['resources/js/app.js'])
+    <!-- Styles & Scripts -->
+    @include('starterkit::components.auth-assets')
     <style>
         * {
             margin: 0;

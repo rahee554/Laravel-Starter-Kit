@@ -40,7 +40,7 @@
             <aside class="admin-board__rail" id="adminBoardRail">
                 <div class="admin-board__rail-panel">
                     <p class="eyebrow">Navigation</p>
-                    @include('layouts.starterkit.admin.partials.nav')
+                    @include('starterkit::layouts.starterkit.admin.partials.nav')
                 </div>
                 <div class="admin-board__rail-panel">
                     <p class="eyebrow">Shortcuts</p>
