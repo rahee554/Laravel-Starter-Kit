@@ -14,7 +14,8 @@ class InstallCommand extends Command
      */
     protected $signature = 'starterkit:install
                             {--force : Overwrite existing files}
-                            {--layout= : Default auth layout to use}';
+                            {--layout= : Default auth layout to use}
+                            {--publish-auth-service : Publish AuthService to app/Services for customization}';
 
     /**
      * The console command description.
@@ -75,6 +76,11 @@ class InstallCommand extends Command
         // 6. Run migrations if desired
         if ($this->confirm('Run database migrations?', true)) {
             $this->call('migrate');
+        }
+
+        // 7. Optionally publish AuthService for customization
+        if ($this->option('publish-auth-service') || $this->confirm('Publish AuthService to app/Services for customization?', false)) {
+            $this->publishAuthService();
         }
 
         $this->newLine();
@@ -171,5 +177,46 @@ class InstallCommand extends Command
             File::append($envPath, $addition);
             $this->info("✓ Added .env configuration (auth layout: {$layout})");
         }
+    }
+
+    /**
+     * Publish AuthService to app/Services for user customization.
+     */
+    protected function publishAuthService()
+    {
+        $sourcePath = __DIR__.'/../Services/AuthService.php';
+        $destinationPath = app_path('Services/AuthService.php');
+
+        // Create Services directory if it doesn't exist
+        if (!File::exists(app_path('Services'))) {
+            File::makeDirectory(app_path('Services'), 0755, true);
+        }
+
+        if (File::exists($destinationPath) && !$this->option('force')) {
+            if (!$this->confirm('app/Services/AuthService.php already exists. Overwrite?')) {
+                return;
+            }
+        }
+
+        // Copy the file
+        File::copy($sourcePath, $destinationPath);
+
+        // Update namespace in the published file
+        $content = File::get($destinationPath);
+        $content = str_replace(
+            'namespace ArtflowStudio\StarterKit\Services;',
+            'namespace App\Services;',
+            $content
+        );
+        File::put($destinationPath, $content);
+
+        $this->info('✓ AuthService published to app/Services/');
+        $this->line('  You can now customize role-based redirects and auth hooks.');
+        
+        $this->newLine();
+        $this->warn('⚠️  Important: Update package response classes to use App\Services\AuthService');
+        $this->line('  - vendor/artflow-studio/starterkit/src/Http/Responses/LoginResponse.php');
+        $this->line('  - vendor/artflow-studio/starterkit/src/Http/Responses/RegisterResponse.php');
+        $this->line('  - vendor/artflow-studio/starterkit/src/Http/Responses/TwoFactorLoginResponse.php');
     }
 }

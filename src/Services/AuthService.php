@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
  * 
  * Handles role-based redirections, post-login hooks, and custom auth workflows
  * 
+ * This service can be published to app/Services/ for customization:
+ *   php artisan starterkit:install --publish-auth-service
+ * 
  * Usage:
  *   AuthService::redirectAfterLogin($user)
  *   AuthService::redirectAfterRegister($user)
@@ -20,22 +23,35 @@ class AuthService
     /**
      * Redirect user based on role after successful login
      * 
+     * Supports Spatie Laravel Permission package for role-based redirects.
+     * If roles are not used, all users go to /dashboard
+     * 
      * @param Model $user
      * @param Request|null $request
-     * @return string Route name or URL
+     * @return string URL path or route name
      */
     public static function redirectAfterLogin(Model $user, ?Request $request = null): string
     {
-        // TODO: Add role-based redirection logic here
-        // Example:
-        // if ($user->hasRole('admin')) {
-        //     return 'admin.dashboard';
-        // } elseif ($user->hasRole('moderator')) {
-        //     return 'moderator.dashboard';
-        // }
+        // Check if Spatie Laravel Permission is available and user has roles
+        if (method_exists($user, 'hasRole')) {
+            // Role-based redirection (customize these as needed)
+            if ($user->hasRole('admin')) {
+                return '/admin/dashboard';
+            }
+            
+            if ($user->hasRole('moderator')) {
+                return '/moderator/dashboard';
+            }
+            
+            if ($user->hasRole('manager')) {
+                return '/manager/dashboard';
+            }
+            
+            // Add more role checks as needed
+        }
         
-        // Default redirect
-        return 'dashboard';
+        // Default redirect for all users without specific roles
+        return '/dashboard';
     }
 
     /**
@@ -43,27 +59,29 @@ class AuthService
      * 
      * @param Model $user
      * @param Request|null $request
-     * @return string Route name or URL
+     * @return string URL path or route name
      */
     public static function redirectAfterRegister(Model $user, ?Request $request = null): string
     {
-        // TODO: Add custom post-registration redirect logic
-        // Example: redirect to onboarding, setup wizard, etc.
+        // Check if email verification is required
+        if (!$user->email_verified_at && static::shouldRequireEmailVerification($user)) {
+            return '/email/verify';
+        }
         
-        // Default: go to dashboard or verification page
-        return $user->email_verified_at ? 'dashboard' : 'verification.notice';
+        // Default: redirect to dashboard
+        // You can customize this to redirect to onboarding, profile setup, etc.
+        return '/dashboard';
     }
 
     /**
      * Redirect after password reset
      * 
      * @param Model $user
-     * @return string Route name or URL
+     * @return string URL path or route name
      */
     public static function redirectAfterPasswordReset(Model $user): string
     {
-        // TODO: Add custom logic after password reset
-        return 'login';
+        return '/login';
     }
 
     /**

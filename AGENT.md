@@ -1,59 +1,504 @@
- # AF Laravel Starter Kit - Complete Package Documentation
+ # StarterKit Package - AI Agent Documentation
 
-**Version**: 0.2.0  
-**Release Date**: November 25, 2025  
-**Repository**: https://github.com/rahee554/Laravel-Starter-Kit  
-**Branch**: main  
-**Owner**: rahee554
+**Version:** 0.3.0  
+**Release Date:** November 26, 2025  
+**Repository:** https://github.com/artflow-studio/starterkit  
+**Maintainer:** ArtFlow Studio  
+**License:** MIT
 
 ---
 
-## 🎯 Project Overview
+## 🎯 Package Overview
 
-**AF Laravel Starter Kit** is a comprehensive, production-ready Laravel package providing:
+**StarterKit** is a professional Laravel authentication package that extends Fortify with:
 
-1. **18 Beautiful Pre-Built Layouts**
-   - 13 authentication layouts (login, register, password reset, 2FA, etc.)
-   - 5 admin dashboard layouts (sidebar, topnav, minimal, neo, classic)
+1. **Complete Fortify Response Contract Coverage (20/20)**
+   - All authentication responses implemented
+   - Role-based redirects via AuthService
+   - Automatic response binding
 
-2. **Complete Fortify Integration**
-   - All authentication services auto-registered
-   - Custom middleware for route protection
-   - Event listeners for auth lifecycle
-   - 6 Fortify action handlers with hooks
+2. **14 Beautiful Pre-Built Auth Layouts**
+   - Zero npm/build required
+   - Bootstrap 5.3.8 + custom styling
+   - Dark mode support
+   - Pre-compiled CSS/JS assets
 
-3. **Zero Configuration Setup**
-   - Single install command: `php artisan starterkit:install`
-   - Pre-built assets (no npm build required)
-   - Bootstrap 5.3.8 integration
-   - Dark mode support built-in
+3. **5 Admin Dashboard Layouts**
+   - Multiple layout options
+   - Responsive design
+   - Professional templates
+
+4. **Advanced Features**
+   - Spatie Laravel Permission integration
+   - Role-based authentication redirects
+   - Centralized AuthService with hooks
+   - Custom middleware for auth checks
 
 ---
 
 ## 📦 Package Structure
 
-### Root Level
-
 ```
-package/
-├── src/                          # Package source code
-├── resources/                    # Views and styles
-├── public/                       # Pre-built assets
-├── config/                       # Configuration files
-├── database/                     # Migrations
-├── docs/                         # Documentation
-├── routes/                       # Test routes
-├── tests/                        # Test suite
-├── composer.json                 # Package metadata
-├── README.md                     # Main documentation
-├── AGENT.md                      # This file
-├── .gitignore                    # Git ignore rules
-└── .git/                         # Git repository
+vendor/artflow-studio/starterkit/
+├── src/
+│   ├── Http/
+│   │   ├── Responses/              ✅ 20 Fortify response contracts
+│   │   ├── Middleware/
+│   │   └── Controllers/
+│   ├── Services/
+│   │   └── AuthService.php         ✅ Role-based auth logic
+│   ├── Providers/
+│   │   ├── StarterKitServiceProvider.php
+│   │   └── StarterKitFortifyServiceProvider.php  ✅ Binds all responses
+│   ├── Console/
+│   │   └── InstallCommand.php      ✅ Installation command
+│   ├── Listeners/
+│   ├── Actions/
+│   └── Helpers/
+├── resources/
+│   ├── views/
+│   │   ├── auth/                   # 14 auth layouts
+│   │   └── admin/                  # 5 admin layouts
+│   ├── css/
+│   └── js/
+├── public/
+│   └── vendor/artflow-studio/starterkit/assets/
+│       ├── auth.css                # Pre-compiled
+│       ├── auth.js                 # Pre-compiled
+│       ├── admin.css               # Pre-compiled
+│       └── admin.js                # Pre-compiled
+├── config/
+│   └── starterkit.php
+├── routes/
+│   └── test-layouts.php
+├── README.md                       # Updated v0.3.0
+├── agent.md                        # This file
+└── composer.json
 ```
 
 ---
 
-## 🔧 Source Code Structure (`src/`)
+## 🔐 20 Fortify Response Contracts Implemented
+
+### Architecture: Response Binding
+
+```php
+// In StarterKitFortifyServiceProvider::register()
+$this->app->singleton(LoginResponse::class, StarterKitLoginResponse::class);
+$this->app->singleton(RegisterResponse::class, StarterKitRegisterResponse::class);
+// ... 18 more bindings
+```
+
+### Complete Response List
+
+| # | Contract | Implementation | Purpose |
+|---|----------|---|---|
+| 1 | `LoginResponse` | `LoginResponse.php` | Post-login redirect using AuthService |
+| 2 | `RegisterResponse` | `RegisterResponse.php` | Post-registration redirect using AuthService |
+| 3 | `LogoutResponse` | `LogoutResponse.php` | Post-logout redirect |
+| 4 | `TwoFactorLoginResponse` | `TwoFactorLoginResponse.php` | 2FA completion using AuthService |
+| 5 | `PasswordResetResponse` | `PasswordResetResponse.php` | After password reset |
+| 6 | `PasswordUpdateResponse` | `PasswordUpdateResponse.php` | After password change |
+| 7 | `PasswordConfirmedResponse` | `PasswordConfirmedResponse.php` | Password confirmation |
+| 8 | `ProfileInformationUpdatedResponse` | `ProfileInformationUpdatedResponse.php` | Profile updated |
+| 9 | `VerifyEmailResponse` | `VerifyEmailResponse.php` | Email verified |
+| 10 | `TwoFactorEnabledResponse` | `TwoFactorEnabledResponse.php` | 2FA enabled |
+| 11 | `TwoFactorDisabledResponse` | `TwoFactorDisabledResponse.php` | 2FA disabled |
+| 12 | `TwoFactorConfirmedResponse` | `TwoFactorConfirmedResponse.php` | 2FA confirmed |
+| 13 | `RecoveryCodesGeneratedResponse` | `RecoveryCodesGeneratedResponse.php` | Recovery codes generated |
+| 14 | `SuccessfulPasswordResetLinkRequestResponse` | `SuccessfulPasswordResetLinkRequestResponse.php` | Reset link sent |
+| 15 | `FailedPasswordResetLinkRequestResponse` | `FailedPasswordResetLinkRequestResponse.php` | Reset link failed |
+| 16 | `FailedPasswordResetResponse` | `FailedPasswordResetResponse.php` | Reset failed |
+| 17 | `FailedPasswordConfirmationResponse` | `FailedPasswordConfirmationResponse.php` | Confirmation failed |
+| 18 | `FailedTwoFactorLoginResponse` | `FailedTwoFactorLoginResponse.php` | Invalid 2FA code |
+| 19 | `EmailVerificationNotificationSentResponse` | `EmailVerificationNotificationSentResponse.php` | Verification email sent |
+| 20 | `LockoutResponse` | `LockoutResponse.php` | Rate limit lockout |
+
+---
+
+## 🧠 AuthService - Core Authentication Logic
+
+### Location
+```
+vendor/artflow-studio/starterkit/src/Services/AuthService.php
+```
+
+### Namespace
+```php
+namespace ArtflowStudio\StarterKit\Services;
+```
+
+### Key Responsibility
+Centralized authentication logic with **built-in Spatie Laravel Permission support**.
+
+### Critical Methods
+
+```php
+// Role-based redirects
+public static function redirectAfterLogin(Model $user, ?Request $request = null): string
+{
+    // Auto-detects Spatie roles:
+    if (method_exists($user, 'hasRole')) {
+        if ($user->hasRole('admin')) {
+            return '/admin/dashboard';
+        }
+        if ($user->hasRole('moderator')) {
+            return '/moderator/dashboard';
+        }
+        if ($user->hasRole('manager')) {
+            return '/manager/dashboard';
+        }
+    }
+    
+    return '/dashboard'; // Default
+}
+
+public static function redirectAfterRegister(Model $user, ?Request $request = null): string
+{
+    // Check email verification requirement
+    if (!$user->email_verified_at && static::shouldRequireEmailVerification($user)) {
+        return '/email/verify';
+    }
+    
+    return '/dashboard';
+}
+
+public static function redirectAfterPasswordReset(Model $user): string
+{
+    return '/login';
+}
+
+// Hooks for custom logic
+public static function beforeLogin(Request $request): bool { ... }
+public static function afterLogin(Model $user, Request $request): void { ... }
+public static function afterRegister(Model $user, Request $request): void { ... }
+public static function beforeLogout(Model $user): bool { ... }
+public static function afterLogout(Model $user): void { ... }
+
+// Checks
+public static function shouldRequireEmailVerification(Model $user): bool { ... }
+public static function shouldRequireTwoFactor(Model $user): bool { ... }
+
+// Validation & Data
+public static function getCustomRegistrationRules(): array { ... }
+public static function sanitizeRegistrationData(array $data): array { ... }
+```
+
+### Publishing AuthService
+
+**AuthService is NOT in `app/` by default.**
+
+To customize it:
+```bash
+php artisan starterkit:install --publish-auth-service
+```
+
+This creates:
+- **File:** `app/Services/AuthService.php`
+- **Namespace:** `App\Services`
+- **Note:** User must update response imports after publishing
+
+### Publishing Update Instructions
+
+After publishing AuthService, update these response files:
+1. `vendor/artflow-studio/starterkit/src/Http/Responses/LoginResponse.php`
+2. `vendor/artflow-studio/starterkit/src/Http/Responses/RegisterResponse.php`
+3. `vendor/artflow-studio/starterkit/src/Http/Responses/TwoFactorLoginResponse.php`
+
+Change imports from:
+```php
+use ArtflowStudio\StarterKit\Services\AuthService;
+```
+
+To:
+```php
+use App\Services\AuthService;
+```
+
+---
+
+## 🔄 Response Architecture
+
+### Response URL Resolution
+
+All responses use a common `resolveRedirectUrl()` helper:
+
+```php
+protected function resolveRedirectUrl(string $redirectTo): string
+{
+    // Full URLs
+    if (str_starts_with($redirectTo, 'http://') || 
+        str_starts_with($redirectTo, 'https://')) {
+        return $redirectTo;
+    }
+    
+    // Path URLs
+    if (str_starts_with($redirectTo, '/')) {
+        return $redirectTo;
+    }
+    
+    // Route names
+    try {
+        return route($redirectTo);
+    } catch (\Exception $e) {
+        return '/' . $redirectTo;
+    }
+}
+```
+
+### Example: LoginResponse Implementation
+
+```php
+namespace ArtflowStudio\StarterKit\Http\Responses;
+
+use ArtflowStudio\StarterKit\Services\AuthService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+
+class LoginResponse implements LoginResponseContract
+{
+    public function toResponse($request): RedirectResponse|JsonResponse
+    {
+        if ($request->wantsJson()) {
+            return response()->json(['two_factor' => false]);
+        }
+
+        $user = auth()->user();
+        
+        // 1. Get redirect via AuthService (auto-detects roles)
+        $redirectTo = AuthService::redirectAfterLogin($user, $request);
+        
+        // 2. Convert to full URL
+        $url = $this->resolveRedirectUrl($redirectTo);
+        
+        // 3. Call post-login hook
+        AuthService::afterLogin($user, $request);
+        
+        // 4. Redirect
+        return redirect()->intended($url);
+    }
+    
+    protected function resolveRedirectUrl(string $redirectTo): string { ... }
+}
+```
+
+---
+
+## ⚙️ Service Provider Configuration
+
+### StarterKitFortifyServiceProvider
+
+**Location:** `src/Providers/StarterKitFortifyServiceProvider.php`
+
+**Responsibilities:**
+
+1. **Bind all 20 response contracts:**
+```php
+$this->app->singleton(LoginResponse::class, StarterKitLoginResponse::class);
+// ... 19 more
+```
+
+2. **Register Fortify actions:**
+```php
+Fortify::createUsersUsing(CreateNewUser::class);
+Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
+```
+
+3. **Register Fortify views with layouts:**
+```php
+$authLayout = StarterKitHelper::getDefaultAuthLayoutView();
+Fortify::loginView(fn () => view('starterkit::auth.login', ['layout' => $authLayout]));
+```
+
+4. **Configure rate limiting:**
+```php
+RateLimiter::for('login', function (Request $request) {
+    return Limit::perMinute(5)->by($throttleKey);
+});
+```
+
+---
+
+## 📋 Installation Command
+
+### Command
+```bash
+php artisan starterkit:install
+```
+
+### Options
+```bash
+--force                    # Overwrite existing files
+--layout=X                # Set default auth layout
+--publish-auth-service   # Publish AuthService to app/Services
+```
+
+### Installation Flow
+
+1. **Check Fortify** - Installs if missing
+2. **Publish Assets** - CSS/JS (no npm build needed)
+3. **Publish Layouts** - 14 auth + 5 admin views
+4. **Publish Config** - `config/starterkit.php`
+5. **Create Test Routes** - `routes/test-layouts.php`
+6. **Update .env** - `STARTERKIT_AUTH_LAYOUT=particles`
+7. **Run Migrations** - Optional
+8. **Publish AuthService** - Optional (with flag)
+
+---
+
+## 🎨 Layouts
+
+### Auth Layouts (14)
+
+```
+particles    - Animated particles background (default)
+centered     - Classic centered login box
+split        - Split screen with content
+glass        - Glassmorphism effect
+hero         - Large hero section background
+modern       - Contemporary design
+3d           - 3D effects
+premium-dark - Premium dark theme
+gradient-flow - Animated gradient flows
+minimal      - Ultra-simple design
+clean        - Professional design
+hero-grid    - Grid-based hero layout
+sidebar      - Sidebar navigation
+base         - Minimal HTML structure
+```
+
+### Admin Layouts (5)
+
+```
+sidebar      - Collapsible sidebar (default)
+topnav       - Top navigation layout
+minimal      - Content-focused
+neo          - Glassmorphic modern
+classic      - Traditional admin
+```
+
+---
+
+## 🧪 Testing Role-Based Redirects
+
+### Setup
+
+```php
+// Create roles
+use Spatie\Permission\Models\Role;
+
+Role::create(['name' => 'admin']);
+Role::create(['name' => 'moderator']);
+```
+
+### Create Test Users
+
+```php
+use App\Models\User;
+
+$admin = User::factory()->create(['email' => 'admin@test.com']);
+$admin->assignRole('admin');
+
+$mod = User::factory()->create(['email' => 'mod@test.com']);
+$mod->assignRole('moderator');
+```
+
+### Create Role Routes
+
+```php
+// routes/web.php
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', fn() => 'User Dashboard')->name('dashboard');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', fn() => 'Admin Dashboard');
+});
+
+Route::middleware(['auth', 'role:moderator'])->group(function () {
+    Route::get('/moderator/dashboard', fn() => 'Moderator Dashboard');
+});
+```
+
+### Test
+
+1. Start server: `php artisan serve`
+2. Login as `admin@test.com` → redirects to `/admin/dashboard`
+3. Login as `mod@test.com` → redirects to `/moderator/dashboard`
+4. Login as any other user → redirects to `/dashboard`
+
+---
+
+## ❌ Important Rules for AI Agents
+
+### DO
+
+- ✅ Keep AuthService in `vendor/artflow-studio/starterkit/src/Services/`
+- ✅ Keep all responses in `src/Http/Responses/`
+- ✅ Bind all responses in `StarterKitFortifyServiceProvider::register()`
+- ✅ Support both route names and URL paths in redirects
+- ✅ Auto-detect Spatie roles with `hasRole()` check
+- ✅ Document all changes in README.md
+
+### DON'T
+
+- ❌ Don't move AuthService to `app/Services/` permanently
+- ❌ Don't create or remove response contracts
+- ❌ Don't hardcode routes or paths
+- ❌ Don't assume Spatie installed without checking
+- ❌ Don't modify Fortify config directly
+- ❌ Don't publish files to `app/` unless explicitly instructed
+
+---
+
+## 🔧 Troubleshooting
+
+### Response Not Binding
+
+```bash
+# Verify binding
+php artisan tinker --execute="dd(app(Laravel\Fortify\Contracts\LoginResponse::class));"
+# Should output: ArtflowStudio\StarterKit\Http\Responses\LoginResponse
+```
+
+### Role Redirects Not Working
+
+1. Check Spatie installed: `composer show spatie/laravel-permission`
+2. Check user has role: `User::find(1)->getRoleNames()`
+3. Check routes exist: `php artisan route:list`
+
+### Still Redirecting to `/home`
+
+```bash
+php artisan config:clear
+php artisan cache:clear
+php artisan route:clear
+```
+
+---
+
+## 📚 File Reference for AI
+
+### Must Read First
+1. `src/Services/AuthService.php` - Core logic
+2. `src/Providers/StarterKitFortifyServiceProvider.php` - Response binding
+3. `src/Http/Responses/LoginResponse.php` - Example response
+4. `src/Console/InstallCommand.php` - Installation logic
+
+### If Modifying Responses
+- Any file in `src/Http/Responses/`
+- Remember to implement `toResponse()` and `resolveRedirectUrl()`
+
+### If Adding Features
+- Extend `AuthService` in user's `app/Services/`
+- Add hooks in `AuthService`
+- Update responses if needed
+
+---
+
+## 📝 Summary
 
 ### 1. **Services** (`src/Services/`)
 
