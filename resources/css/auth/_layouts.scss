@@ -1,28 +1,30 @@
 // ============================================
-// AUTH LAYOUT STYLES
+// AUTH LAYOUT STYLES - Minimal & Elegant
 // ============================================
 
+// ============================================
 // LAYOUT 1: Centered Box (Clean/Default)
+// ============================================
 .auth-layout-centered {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
     position: relative;
     overflow: hidden;
     
     &::before {
         content: '';
         position: absolute;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, rgba(0, 170, 255, 0.1) 0%, transparent 70%);
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(0, 170, 255, 0.06) 0%, transparent 70%);
         border-radius: 50%;
-        top: -50px;
-        right: -50px;
-        animation: float 6s ease-in-out infinite;
+        top: -80px;
+        right: -80px;
+        animation: float 8s ease-in-out infinite;
     }
     
     &::after {
@@ -30,22 +32,24 @@
         position: absolute;
         width: 200px;
         height: 200px;
-        background: radial-gradient(circle, rgba(0, 170, 255, 0.08) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(0, 170, 255, 0.04) 0%, transparent 70%);
         border-radius: 50%;
-        bottom: -30px;
-        left: -30px;
-        animation: float 8s ease-in-out infinite 1s;
+        bottom: -60px;
+        left: -60px;
+        animation: float 10s ease-in-out infinite 1s;
     }
 
     .auth-container {
         width: 100%;
-        max-width: 440px;
+        max-width: 420px;
         position: relative;
         z-index: 1;
     }
 }
 
+// ============================================
 // LAYOUT 2: Split Screen
+// ============================================
 .auth-layout-split {
     min-height: 100vh;
     display: flex;
@@ -54,7 +58,7 @@
     .auth-left {
         flex: 1;
         background: linear-gradient(135deg, #00aaff 0%, #0088cc 100%);
-        padding: 3rem;
+        padding: 4rem 3.5rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -69,36 +73,36 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            animation: moveGradient 15s ease infinite;
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .logo-area {
             position: relative;
             z-index: 1;
             text-align: center;
-            animation: fadeInUp 0.6s ease-out;
+            animation: fadeInUp 0.5s ease-out;
 
             .logo-placeholder {
-                width: 80px;
-                height: 80px;
-                background: rgba(255, 255, 255, 0.15);
-                border-radius: 1rem;
+                width: 70px;
+                height: 70px;
+                background: rgba(255, 255, 255, 0.12);
+                border-radius: 0.75rem;
                 margin: 0 auto 1.5rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 2rem;
+                font-size: 1.875rem;
                 font-weight: 700;
                 backdrop-filter: blur(10px);
-                border: 2px solid rgba(255, 255, 255, 0.2);
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-                transition: var(--transition-smooth);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
                 &:hover {
-                    background: rgba(255, 255, 255, 0.2);
-                    transform: scale(1.05);
+                    background: rgba(255, 255, 255, 0.15);
+                    transform: translateY(-2px);
                 }
             }
 
@@ -107,20 +111,21 @@
                 font-weight: 700;
                 margin-bottom: 1rem;
                 letter-spacing: -0.5px;
+                line-height: 1.3;
             }
 
             p {
                 font-size: 1rem;
-                opacity: 0.9;
+                opacity: 0.85;
                 line-height: 1.6;
-                max-width: 400px;
+                max-width: 420px;
             }
         }
     }
 
     .auth-right {
         flex: 1;
-        padding: 3rem;
+        padding: 4rem 3.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -128,27 +133,27 @@
 
         .auth-container {
             width: 100%;
-            max-width: 440px;
+            max-width: 380px;
         }
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 1024px) {
         flex-direction: column;
 
         .auth-left {
-            min-height: 40vh;
-            padding: 2rem;
+            min-height: 36vh;
+            padding: 3rem 2.5rem;
         }
 
         .auth-right {
-            padding: 2rem;
+            padding: 3rem 2.5rem;
         }
     }
 
     @media (max-width: 768px) {
         .auth-left {
-            min-height: 35vh;
-            padding: 1.5rem;
+            min-height: 32vh;
+            padding: 2rem 1.5rem;
 
             .logo-area {
                 h2 {
@@ -156,31 +161,34 @@
                 }
 
                 p {
-                    font-size: 0.9rem;
+                    font-size: 0.95rem;
                 }
             }
         }
 
         .auth-right {
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
         }
     }
 }
 
+// ============================================
 // LAYOUT 3: Minimal with Top Bar
+// ============================================
 .auth-layout-minimal {
     min-height: 100vh;
-    background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%);
     display: flex;
     flex-direction: column;
 
     .auth-top-bar {
         background: white;
-        padding: 1.25rem 2rem;
-        box-shadow: var(--shadow-sm);
+        padding: 1rem 2rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e5e7eb;
+        gap: 0.75rem;
 
         .logo-placeholder {
             width: 40px;
@@ -192,14 +200,15 @@
             justify-content: center;
             color: white;
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.125rem;
+            flex-shrink: 0;
         }
 
         .brand-name {
-            margin-left: 0.75rem;
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 600;
-            color: #1e293b;
+            color: #1f2937;
+            letter-spacing: -0.3px;
         }
     }
 
@@ -208,7 +217,7 @@
         align-items: center;
         justify-content: center;
         flex: 1;
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 1.5rem;
 
         .auth-container {
             width: 100%;
@@ -218,16 +227,22 @@
 
     @media (max-width: 576px) {
         .auth-top-bar {
-            padding: 1rem 1.5rem;
+            padding: 0.875rem 1.5rem;
 
             .brand-name {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
+        }
+
+        .auth-content {
+            padding: 2rem 1.5rem;
         }
     }
 }
 
-// LAYOUT 4: Glassmorphism - FIXED for visibility
+// ============================================
+// LAYOUT 4: Glassmorphism
+// ============================================
 .auth-layout-glass {
     min-height: 100vh;
     display: flex;
@@ -240,9 +255,33 @@
     position: relative;
     overflow: hidden;
 
+    &::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+        border-radius: 50%;
+        top: -100px;
+        left: -100px;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
+        border-radius: 50%;
+        bottom: -80px;
+        right: -80px;
+        animation: float 10s ease-in-out infinite 2s;
+    }
+
     .auth-container {
         width: 100%;
-        max-width: 440px;
+        max-width: 420px;
         position: relative;
         z-index: 1;
     }
@@ -250,7 +289,7 @@
     .auth-card {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.25);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
 
@@ -258,12 +297,12 @@
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
         padding: 1.5rem;
-        border-radius: $border-radius-lg;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
         
         p {
-            color: #1e293b;
+            color: #1f2937;
             font-weight: 500;
             
             a {
@@ -278,7 +317,9 @@
     }
 }
 
-// LAYOUT 5: Particles - NO CSS ANIMATIONS (will use particles.js)
+// ============================================
+// LAYOUT 5: Particles
+// ============================================
 .auth-layout-particles {
     min-height: 100vh;
     display: flex;
@@ -296,20 +337,21 @@
         top: 0;
         left: 0;
         z-index: 1;
+        opacity: 0.6;
     }
 
     .auth-container {
         width: 100%;
-        max-width: 440px;
+        max-width: 420px;
         position: relative;
         z-index: 10;
     }
 
     .auth-card {
-        background: rgba(30, 41, 59, 0.85);
+        background: rgba(30, 41, 59, 0.8);
         backdrop-filter: blur(15px);
-        border: 1px solid rgba(0, 170, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(0, 170, 255, 0.1);
+        border: 1px solid rgba(0, 170, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 170, 255, 0.08);
 
         .auth-header {
             h1 {
@@ -322,7 +364,7 @@
 
             .logo-placeholder {
                 background: linear-gradient(135deg, #00aaff 0%, #0088cc 100%);
-                box-shadow: 0 4px 20px rgba(0, 170, 255, 0.4);
+                box-shadow: 0 4px 16px rgba(0, 170, 255, 0.3);
             }
         }
 
@@ -334,7 +376,7 @@
         textarea,
         select {
             background: rgba(15, 23, 42, 0.6) !important;
-            border-color: rgba(0, 170, 255, 0.2) !important;
+            border-color: rgba(0, 170, 255, 0.15) !important;
             color: #f0f9ff !important;
 
             &::placeholder {
@@ -344,14 +386,6 @@
             &:focus {
                 background: rgba(15, 23, 42, 0.8) !important;
                 border-color: #00aaff !important;
-            }
-        }
-
-        .form-check {
-            input[type="checkbox"],
-            input[type="radio"] {
-                background: rgba(15, 23, 42, 0.6) !important;
-                border-color: rgba(0, 170, 255, 0.3) !important;
             }
         }
 
@@ -369,12 +403,12 @@
     }
 
     .auth-links {
-        background: rgba(30, 41, 59, 0.85);
+        background: rgba(30, 41, 59, 0.8);
         backdrop-filter: blur(15px);
         padding: 1.5rem;
-        border-radius: $border-radius-lg;
-        border: 1px solid rgba(0, 170, 255, 0.2);
-        border-top-color: rgba(0, 170, 255, 0.2);
+        border-radius: 0.75rem;
+        border: 1px solid rgba(0, 170, 255, 0.15);
+        border-top-color: rgba(0, 170, 255, 0.15);
 
         p {
             color: #cbd5e1;
@@ -390,7 +424,9 @@
     }
 }
 
-// LAYOUT 6: Hero with Gradient (Previously hero-grid)
+// ============================================
+// LAYOUT 6: Hero with Gradient
+// ============================================
 .auth-layout-hero {
     min-height: 100vh;
     display: grid;
@@ -401,7 +437,7 @@
 
     .hero-section {
         background: linear-gradient(135deg, #00aaff 0%, #0088cc 100%);
-        padding: 4rem 3rem;
+        padding: 4rem 3.5rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -413,40 +449,29 @@
         &::before {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 350px;
+            height: 350px;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
             border-radius: 50%;
             top: -100px;
             right: -100px;
         }
 
-        &::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -80px;
-            left: -80px;
-        }
-
         h2 {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1.5rem;
             position: relative;
             z-index: 1;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
         p {
-            font-size: 1.125rem;
+            font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 2rem;
-            opacity: 0.95;
+            opacity: 0.9;
             position: relative;
             z-index: 1;
             max-width: 450px;
@@ -456,12 +481,14 @@
             list-style: none;
             position: relative;
             z-index: 1;
+            gap: 1rem;
+            display: flex;
+            flex-direction: column;
 
             li {
-                margin-bottom: 1rem;
                 display: flex;
                 align-items: center;
-                font-size: 1rem;
+                font-size: 0.95rem;
                 opacity: 0.9;
 
                 &::before {
@@ -469,20 +496,21 @@
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
-                    width: 28px;
-                    height: 28px;
-                    background: rgba(255, 255, 255, 0.2);
+                    width: 24px;
+                    height: 24px;
+                    background: rgba(255, 255, 255, 0.15);
                     border-radius: 50%;
                     margin-right: 1rem;
                     font-weight: 700;
-                    font-size: 0.875rem;
+                    font-size: 0.75rem;
+                    flex-shrink: 0;
                 }
             }
         }
     }
 
     .form-section {
-        padding: 4rem 3rem;
+        padding: 4rem 3.5rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -490,7 +518,7 @@
 
         .auth-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
         }
     }
 
@@ -498,35 +526,35 @@
         grid-template-columns: 1fr;
 
         .hero-section {
-            min-height: 35vh;
-            padding: 3rem 2rem;
+            min-height: 36vh;
+            padding: 3rem 2.5rem;
 
             h2 {
                 font-size: 2rem;
             }
 
             p {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
         }
 
         .form-section {
-            padding: 3rem 2rem;
+            padding: 3rem 2.5rem;
         }
     }
 
     @media (max-width: 768px) {
         .hero-section {
-            min-height: 30vh;
+            min-height: 32vh;
             padding: 2rem 1.5rem;
             text-align: center;
 
             h2 {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
 
             p {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 margin-bottom: 1.5rem;
             }
 
@@ -541,7 +569,9 @@
     }
 }
 
-// LAYOUT 7: Modern Gradient - FIXED for visibility
+// ============================================
+// LAYOUT 7: Modern Gradient
+// ============================================
 .auth-layout-modern {
     min-height: 100vh;
     display: flex;
@@ -557,21 +587,21 @@
     &::before {
         content: '';
         position: absolute;
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
         border-radius: 50%;
-        top: -100px;
-        left: -100px;
+        top: -120px;
+        left: -120px;
         animation: float 10s ease-in-out infinite;
     }
 
     &::after {
         content: '';
         position: absolute;
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
         border-radius: 50%;
         bottom: -80px;
         right: -80px;
@@ -580,7 +610,7 @@
 
     .auth-container {
         width: 100%;
-        max-width: 440px;
+        max-width: 420px;
         position: relative;
         z-index: 1;
     }
@@ -588,7 +618,7 @@
     .auth-card {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.25);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
 
@@ -596,12 +626,12 @@
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
         padding: 1.5rem;
-        border-radius: $border-radius-lg;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
         
         p {
-            color: #1e293b;
+            color: #1f2937;
             font-weight: 500;
             
             a {
@@ -616,7 +646,9 @@
     }
 }
 
+// ============================================
 // LAYOUT 8: 3D Perspective
+// ============================================
 .auth-layout-3d {
     min-height: 100vh;
     display: flex;
@@ -626,14 +658,14 @@
     background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 50%, #0f172a 100%);
     position: relative;
     overflow: hidden;
-    perspective: 1500px;
+    perspective: 1200px;
 
     &::before {
         content: '';
         position: absolute;
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, rgba(0, 170, 255, 0.15) 0%, transparent 70%);
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(0, 170, 255, 0.12) 0%, transparent 70%);
         border-radius: 50%;
         top: -100px;
         right: -100px;
@@ -643,9 +675,9 @@
     &::after {
         content: '';
         position: absolute;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
         border-radius: 50%;
         bottom: -80px;
         left: -80px;
@@ -654,40 +686,24 @@
 
     .auth-container {
         width: 100%;
-        max-width: 440px;
+        max-width: 420px;
         position: relative;
         z-index: 1;
-        transform-style: preserve-3d;
     }
 
     .auth-card {
-        background: rgba(30, 41, 59, 0.9);
+        background: rgba(30, 41, 59, 0.85);
         backdrop-filter: blur(20px);
-        border: 1px solid rgba(0, 170, 255, 0.2);
+        border: 1px solid rgba(0, 170, 255, 0.15);
         box-shadow: 
-            0 20px 60px rgba(0, 0, 0, 0.4),
-            0 0 80px rgba(0, 170, 255, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        transform-style: preserve-3d;
-        position: relative;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            background: linear-gradient(135deg, rgba(0, 170, 255, 0.05), rgba(139, 92, 246, 0.05));
-            border-radius: inherit;
-            z-index: -1;
-            transform: translateZ(-20px);
-        }
+            0 20px 60px rgba(0, 0, 0, 0.3),
+            0 0 40px rgba(0, 170, 255, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
         .auth-header {
             h1 {
                 color: #f0f9ff;
-                text-shadow: 0 2px 10px rgba(0, 170, 255, 0.3);
+                text-shadow: 0 2px 8px rgba(0, 170, 255, 0.25);
             }
 
             p {
@@ -697,8 +713,8 @@
             .logo-placeholder {
                 background: linear-gradient(135deg, #00aaff 0%, #0088cc 100%);
                 box-shadow: 
-                    0 4px 20px rgba(0, 170, 255, 0.4),
-                    0 8px 40px rgba(0, 170, 255, 0.2);
+                    0 4px 16px rgba(0, 170, 255, 0.3),
+                    0 0 30px rgba(0, 170, 255, 0.15);
             }
         }
 
@@ -709,8 +725,8 @@
         input,
         textarea,
         select {
-            background: rgba(15, 23, 42, 0.7) !important;
-            border-color: rgba(0, 170, 255, 0.2) !important;
+            background: rgba(15, 23, 42, 0.6) !important;
+            border-color: rgba(0, 170, 255, 0.15) !important;
             color: #f0f9ff !important;
 
             &::placeholder {
@@ -718,17 +734,9 @@
             }
 
             &:focus {
-                background: rgba(15, 23, 42, 0.9) !important;
+                background: rgba(15, 23, 42, 0.8) !important;
                 border-color: #00aaff !important;
-                box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.2) !important;
-            }
-        }
-
-        .form-check {
-            input[type="checkbox"],
-            input[type="radio"] {
-                background: rgba(15, 23, 42, 0.7) !important;
-                border-color: rgba(0, 170, 255, 0.3) !important;
+                box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.12) !important;
             }
         }
 
@@ -746,12 +754,11 @@
     }
 
     .auth-links {
-        background: rgba(30, 41, 59, 0.9);
+        background: rgba(30, 41, 59, 0.85);
         backdrop-filter: blur(20px);
         padding: 1.5rem;
-        border-radius: $border-radius-lg;
-        border: 1px solid rgba(0, 170, 255, 0.2);
-        border-top-color: rgba(0, 170, 255, 0.2);
+        border-radius: 0.75rem;
+        border: 1px solid rgba(0, 170, 255, 0.15);
 
         p {
             color: #cbd5e1;
@@ -767,7 +774,9 @@
     }
 }
 
+// ============================================
 // LAYOUT 9: Premium Dark Theme
+// ============================================
 .auth-layout-premium-dark {
     min-height: 100vh;
     display: flex;
@@ -785,14 +794,15 @@
         top: 0;
         left: 0;
         background: 
-            radial-gradient(circle at 20% 50%, rgba(0, 170, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            radial-gradient(circle at 20% 50%, rgba(0, 170, 255, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
         z-index: 0;
+        pointer-events: none;
     }
 
     .auth-container {
         width: 100%;
-        max-width: 440px;
+        max-width: 420px;
         position: relative;
         z-index: 1;
     }
@@ -801,7 +811,7 @@
         background: rgba(30, 41, 59, 0.8);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(0, 170, 255, 0.1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 
         .auth-header {
             h1 {
@@ -821,7 +831,7 @@
         textarea,
         select {
             background: rgba(15, 23, 42, 0.6) !important;
-            border-color: rgba(0, 170, 255, 0.2) !important;
+            border-color: rgba(0, 170, 255, 0.15) !important;
             color: #f0f9ff !important;
 
             &::placeholder {
@@ -831,14 +841,6 @@
             &:focus {
                 background: rgba(15, 23, 42, 0.8) !important;
                 border-color: #00aaff !important;
-            }
-        }
-
-        .form-check {
-            input[type="checkbox"],
-            input[type="radio"] {
-                background: rgba(15, 23, 42, 0.6) !important;
-                border-color: rgba(0, 170, 255, 0.3) !important;
             }
         }
 
@@ -859,9 +861,8 @@
         background: rgba(30, 41, 59, 0.8);
         backdrop-filter: blur(10px);
         padding: 1.5rem;
-        border-radius: $border-radius-lg;
+        border-radius: 0.75rem;
         border: 1px solid rgba(0, 170, 255, 0.1);
-        border-top-color: rgba(0, 170, 255, 0.1);
 
         p {
             color: #cbd5e1;
@@ -877,62 +878,140 @@
     }
 }
 
-// LAYOUT 10: Gradient Flow - SIMPLIFIED and CENTERED
+// ============================================
+// LAYOUT 10: Gradient Flow
+// ============================================
 .auth-layout-gradient-flow {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 50%, #eff6ff 100%);
     position: relative;
     overflow: hidden;
 
     &::before {
         content: '';
         position: absolute;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, rgba(0, 170, 255, 0.1) 0%, transparent 70%);
+        width: 280px;
+        height: 280px;
+        background: radial-gradient(circle, rgba(0, 170, 255, 0.06) 0%, transparent 70%);
         border-radius: 50%;
-        top: -50px;
-        right: -50px;
+        top: -80px;
+        right: -80px;
         animation: float 8s ease-in-out infinite;
     }
 
     &::after {
         content: '';
         position: absolute;
-        width: 250px;
-        height: 250px;
-        background: radial-gradient(circle, rgba(100, 116, 139, 0.08) 0%, transparent 70%);
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(circle, rgba(100, 116, 139, 0.04) 0%, transparent 70%);
         border-radius: 50%;
-        bottom: -40px;
-        left: -40px;
+        bottom: -60px;
+        left: -60px;
         animation: float 10s ease-in-out infinite 2s;
     }
 
     .auth-container {
         width: 100%;
-        max-width: 440px;
+        max-width: 420px;
         position: relative;
         z-index: 1;
     }
 }
 
-// Responsive adjustments for all layouts
+// ============================================
+// ANIMATIONS - Shared Across Layouts
+// ============================================
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-15px) translateX(10px);
+    }
+    50% {
+        transform: translateY(-30px) translateX(0);
+    }
+    75% {
+        transform: translateY(-15px) translateX(-10px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes modernGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes moveGradient {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(20px, -20px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+// ============================================
+// RESPONSIVE ADJUSTMENTS
+// ============================================
 @media (max-width: 768px) {
     .auth-layout-glass,
     .auth-layout-centered,
     .auth-layout-particles,
     .auth-layout-modern,
-    .auth-layout-gradient-flow {
+    .auth-layout-gradient-flow,
+    .auth-layout-3d,
+    .auth-layout-premium-dark {
         padding: 1rem;
+    }
+
+    .auth-card {
+        padding: 1.5rem;
     }
 }
 
 @media (max-width: 1200px) {
     .auth-card {
-        padding: 2rem;
+        padding: 1.75rem;
     }
 }

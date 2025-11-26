@@ -1,36 +1,40 @@
 // ============================================
-// FORM STYLES - Overriding Bootstrap Forms
+// FORM STYLES - Minimal & Elegant
 // ============================================
-// These styles OVERRIDE Bootstrap form classes completely
-// to maintain our custom design
+// Clean form controls with proper spacing
 
-// Override Bootstrap .form-label completely
+// Form Label - Refined
 .form-label {
-    font-weight: 500 !important;
+    font-weight: $font-weight-medium !important;
     color: var(--auth-text) !important;
-    font-size: 0.875rem !important;
+    font-size: $font-size-sm !important;
     letter-spacing: 0.01em !important;
-    margin-bottom: 0.5rem !important;
+    margin-bottom: $spacing-sm !important;
+    display: block;
+    line-height: $line-height-normal;
 }
 
-// Override Bootstrap .form-control completely
+// Form Control - Clean & Minimal
 .form-control {
     width: 100% !important;
-    padding: 0.75rem 1rem !important;
+    padding: 0.625rem 0.875rem !important;
     border: 1px solid var(--auth-input-border) !important;
-    border-radius: $border-radius !important;
+    border-radius: 0.5rem !important;
     font-size: 0.9375rem !important;
     font-weight: 400 !important;
-    transition: var(--transition-smooth) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
     background: var(--auth-input-bg) !important;
     color: var(--auth-input-text) !important;
     font-family: inherit !important;
     line-height: 1.5 !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 
     &:focus {
         outline: none !important;
         border-color: var(--auth-primary) !important;
-        box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.1) !important;
+        box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.08) !important;
         background: var(--auth-input-bg) !important;
     }
 
@@ -41,38 +45,37 @@
     }
 
     &.is-invalid {
-        border-color: $danger !important;
+        border-color: #ef4444 !important;
 
         &:focus {
-            box-shadow: 0 0 0 0.25rem rgba(239, 68, 68, 0.1) !important;
-        }
-    }
-
-    // Dark mode support
-    [data-bs-theme="dark"] & {
-        background: var(--auth-input-bg) !important;
-        border-color: var(--auth-input-border) !important;
-        color: var(--auth-input-text) !important;
-
-        &:focus {
-            background: var(--auth-input-bg) !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.08) !important;
         }
     }
 }
 
-// Override Bootstrap .form-select completely
+// Form Select - Consistent with inputs
 .form-select {
     width: 100% !important;
-    padding: 0.75rem 1rem !important;
-    border: 1px solid var(--auth-input-border) !important;
+    padding: $input-padding-y $input-padding-x !important;
+    border: $input-border-width solid var(--auth-input-border) !important;
     border-radius: $border-radius !important;
     background: var(--auth-input-bg) !important;
     color: var(--auth-input-text) !important;
-    transition: var(--transition-smooth) !important;
+    transition: var(--transition-base) !important;
+    font-size: $input-font-size !important;
+    font-family: inherit !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right $spacing-sm center;
+    background-size: 16px 12px;
+    padding-right: 2.5rem !important;
 
     &:focus {
         border-color: var(--auth-primary) !important;
-        box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.1) !important;
+        box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.08) !important;
         outline: none !important;
     }
 
@@ -81,38 +84,21 @@
         background: var(--auth-input-bg) !important;
         border-color: var(--auth-input-border) !important;
         color: var(--auth-input-text) !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23cbd5e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
     }
 }
 
-// Textarea specific
+// Textarea - Refined
 textarea.form-control {
     resize: vertical !important;
     min-height: 100px !important;
+    font-family: inherit !important;
 }
 
-// Custom row layout for remember me / forgot password
-.form-group-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    .form-check {
-        margin: 0;
-    }
-
-    .btn-link {
-        margin: 0;
-        padding: 0;
-    }
-}
-
-// Override Bootstrap .form-check completely (checkboxes and radios)
+// Form Check - Checkboxes and Radios
 .form-check {
     padding-left: 0 !important;
-    margin: 1.25rem 0 !important;
+    margin: $spacing-lg 0 !important;
     display: flex !important;
     align-items: flex-start !important;
     min-height: auto !important;
@@ -128,10 +114,10 @@ textarea.form-control {
         background: var(--auth-input-bg) !important;
         cursor: pointer !important;
         margin: 0 !important;
-        margin-right: 0.625rem !important;
+        margin-right: $spacing-md !important;
         margin-top: 0.125rem !important;
         flex-shrink: 0 !important;
-        transition: all 0.2s ease !important;
+        transition: var(--transition-base) !important;
         float: none !important;
         border-radius: 0.25rem !important;
 
@@ -154,7 +140,7 @@ textarea.form-control {
 
         &:focus {
             border-color: var(--auth-primary) !important;
-            box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.1) !important;
+            box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.08) !important;
             outline: none !important;
         }
 
@@ -162,7 +148,7 @@ textarea.form-control {
             border-color: var(--auth-primary) !important;
         }
 
-        // Radio button specific styles
+        // Radio button specific
         &[type="radio"] {
             border-radius: 50% !important;
 
@@ -189,19 +175,19 @@ textarea.form-control {
 
     .form-check-label {
         cursor: pointer !important;
-        font-weight: 400 !important;
+        font-weight: $font-weight-normal !important;
         color: var(--auth-text) !important;
-        font-size: 0.9375rem !important;
+        font-size: $font-size-base !important;
         user-select: none !important;
-        line-height: 1.4 !important;
+        line-height: $line-height-normal !important;
         padding-left: 0 !important;
         margin-bottom: 0 !important;
 
         a {
             color: var(--auth-primary) !important;
             text-decoration: none !important;
-            font-weight: 500 !important;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            font-weight: $font-weight-medium !important;
+            transition: var(--transition-fast) !important;
 
             &:hover {
                 color: var(--auth-primary-dark) !important;
@@ -211,15 +197,37 @@ textarea.form-control {
     }
 }
 
-// Alerts & Error Messages - Extending Bootstrap .alert
+// Form Group Row - For inline layouts
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+
+    .form-check {
+        margin: 0 !important;
+    }
+
+    .btn-link {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+// ============================================
+// ALERTS & ERROR MESSAGES
+// ============================================
 .alert {
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin-bottom: 1.25rem;
+    border-radius: $border-radius;
+    padding: $spacing-lg;
+    margin-bottom: $spacing-lg;
     animation: slideDown 0.3s ease-out;
     border: 1px solid;
     display: flex;
     align-items: flex-start;
+    gap: $spacing-md;
     
     &-danger {
         background: #fef2f2;
@@ -228,10 +236,10 @@ textarea.form-control {
         
         ul {
             margin: 0;
-            padding-left: 1.25rem;
+            padding-left: $spacing-lg;
             
             li {
-                margin: 0.25rem 0;
+                margin: $spacing-xs 0;
             }
         }
     }
@@ -257,77 +265,84 @@ textarea.form-control {
 
 .invalid-feedback {
     display: block;
-    color: #dc2626;
-    font-size: 0.8125rem;
-    margin-top: 0.375rem;
-    font-weight: 400;
+    color: $danger;
+    font-size: $font-size-xs;
+    margin-top: $spacing-xs;
+    font-weight: $font-weight-normal;
 }
 
 .is-invalid {
-    border-color: #ef4444 !important;
+    border-color: $danger !important;
     
     &:focus {
-        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.08) !important;
     }
 }
 
 .form-text {
     display: block;
-    margin-top: 0.375rem;
-    font-size: 0.8125rem;
-    color: #64748b;
+    margin-top: $spacing-xs;
+    font-size: $font-size-xs;
+    color: var(--auth-text-tertiary);
 }
 
-// Two-Factor Authentication Specific
+// ============================================
+// TWO-FACTOR AUTHENTICATION SPECIFIC
+// ============================================
 .two-factor-code-input {
     display: flex;
-    gap: 0.5rem;
+    gap: $spacing-md;
     justify-content: center;
-    margin: 1.5rem 0;
+    margin: $spacing-lg 0;
     
     input {
         width: 3rem;
         height: 3rem;
         text-align: center;
-        font-size: 1.5rem;
-        font-weight: 600;
-        border: 2px solid #e2e8f0;
-        border-radius: 0.5rem;
+        font-size: $font-size-xl;
+        font-weight: $font-weight-bold;
+        border: 2px solid var(--auth-input-border);
+        border-radius: $border-radius;
         transition: var(--transition-base);
+        background: var(--auth-input-bg);
+        color: var(--auth-input-text);
         
         &:focus {
-            border-color: #00aaff;
-            box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.1);
+            border-color: var(--auth-primary);
+            box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.08);
             outline: none;
         }
     }
 }
 
 .recovery-codes {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin: 1rem 0;
+    background: var(--auth-border-subtle);
+    border: 1px solid var(--auth-border);
+    border-radius: $border-radius;
+    padding: $spacing-lg;
+    margin: $spacing-lg 0;
     
     code {
         display: block;
         font-family: 'Courier New', monospace;
-        font-size: 0.875rem;
-        color: #334155;
-        padding: 0.25rem 0;
+        font-size: $font-size-sm;
+        color: var(--auth-text);
+        padding: $spacing-xs 0;
+        word-break: break-all;
     }
 }
 
-// Responsive adjustments
+// ============================================
+// RESPONSIVE ADJUSTMENTS
+// ============================================
 @media (max-width: 576px) {
     .form-group {
-        margin-bottom: 1rem;
+        margin-bottom: $spacing-lg;
 
         input,
         textarea,
         select {
-            padding: 0.625rem 0.875rem;
+            padding: calc($input-padding-y - 0.0625rem) $input-padding-x;
             font-size: 16px; // Prevent zoom on iOS
         }
     }
@@ -335,6 +350,10 @@ textarea.form-control {
     .two-factor-code-input input {
         width: 2.5rem;
         height: 2.5rem;
-        font-size: 1.25rem;
+        font-size: $font-size-lg;
+    }
+
+    .form-label {
+        font-size: $font-size-sm;
     }
 }
